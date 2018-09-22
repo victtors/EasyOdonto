@@ -23,8 +23,8 @@
         <div id="cm-menu-items-wrapper">
           <div id="cm-menu-scroller">
             <ul class="cm-menu-items">
-              <li class="active"><a href="{{ url('/') }}" class="sf-house">Início</a></li>
-              <li class="active"><a href="{{ url('/admin') }}" class=" sf-profile">Cadastrar Funcionário</a></li>
+              <li class="active"><a href="{{ url('/admin') }}" class="sf-house">Início</a></li>
+              <li class="active"><a href="{{ url('/user/cadastrarFuncionario') }}" class=" sf-profile">Cadastrar Funcionário</a></li>
               <li class="active"><a href="{{ url('/servico/cadastrarServico') }}" class="sf-sign-add">Cadastrar Serviços</a></li>
               <li class="active"><a href="{{ url('/servico/listaServico') }}" class="sf-file-text">Ver Serviços</a></li>
             </ul>

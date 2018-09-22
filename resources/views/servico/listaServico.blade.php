@@ -30,9 +30,9 @@
 	                            <th scope="row">{{$value->id}}</th>
 	                            <td>{{$value->nome_servico}}</td>
 	                            <td>
-	                            	<form method="POST" class="pull-right" action="./delete/{{$value->id}}">
+	                            	<form method="POST" class="pull-right" action="./deletarServico/{{$value->id}}">
 	                            		@csrf
-	                            		<button class="btn btn-warning" onclick="return confirm('Tem certeza que deseja deletar o paciente {{$value->nome}}?')">Deletar</button>
+	                            		<button class="btn btn-warning" onclick="return confirm('Tem certeza que deseja deletar o serviço: {{$value->nome_servico}}?')">Deletar</button>
 	                            	</form>
 	                                <!-- <a class="btn btn-small btn-success" href="{{ URL::to('paciente/' . $value->id) }}">Detalhes</a> -->
 	                				<a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href=" {{ URL::to('servico/editarServico/' . $value->id) }}">Editar</a>
