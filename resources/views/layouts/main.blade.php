@@ -21,7 +21,8 @@
 	        <div id="cm-menu-items-wrapper">
 	            <div id="cm-menu-scroller">
 	                <ul class="cm-menu-items">
-	                    <li class="@active('paciente/?.*')"><a href="./lista" class="sf-house">Paciente</a></li>
+	                    <li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-house">Paciente</a></li>
+	                    <li class="@active('agenda/?.*')"><a href="{{url('agenda')}}" class="sf-house">Agenda</a></li>
 	                </ul>
 	            </div>
 	        </div>
@@ -38,7 +39,6 @@
     <script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
     <script src="{{ asset('js/jquery.cookie.min.js') }}"></script>
     <script src="{{ asset('js/fastclick.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/clearmin.min.js') }}"></script>
 </body>
 </html>

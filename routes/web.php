@@ -30,6 +30,8 @@ Route::post('paciente/delete/{id}', 'PacienteController@destroy');
 Route::get('paciente/edit/{id}', 'PacienteController@edit');
 Route::post('paciente/edit/{id}', 'PacienteController@update');
 
+Route::get('agenda', 'ConsultaController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
