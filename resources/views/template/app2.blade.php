@@ -25,6 +25,7 @@
             <ul class="cm-menu-items">
               <li class="active"><a href="{{ url('/admin') }}" class="sf-house">Início</a></li>
               <li class="active"><a href="{{ url('/user/cadastrarFuncionario') }}" class=" sf-profile">Cadastrar Funcionário</a></li>
+              <li class="active"><a href="{{ url('/user/listaFuncionario') }}" class=" sf-post-it">Ver Funcionário</a></li>
               <li class="active"><a href="{{ url('/servico/cadastrarServico') }}" class="sf-sign-add">Cadastrar Serviços</a></li>
               <li class="active"><a href="{{ url('/servico/listaServico') }}" class="sf-file-text">Ver Serviços</a></li>
             </ul>

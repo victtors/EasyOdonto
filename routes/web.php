@@ -39,4 +39,6 @@ Route::group(["prefix" => "servico"], function () {
 Route::group(["prefix" => "user"], function () {
     Route::get("/cadastrarFuncionario", "UserController@cadastrarFuncionarioView");
     Route::post("/storeFuncionario","UserController@store");
+    Route::get("/listaFuncionario", "UserController@listaFuncionarioView");
+    Route::post("/deletarFuncionario/{id}", "UserController@deletarFuncionario");
 });
