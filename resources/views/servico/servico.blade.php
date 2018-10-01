@@ -63,14 +63,14 @@
     <div class="cm-flex">
         <div class="nav-tabs-container">
             <ul class="nav nav-tabs">
-                <li class="@active('paciente/lista/?.*')"><a href="{{ url('/paciente/lista') }}">Lista de Pacientes</a></li>
-                <li class="@active('paciente/cadastrar/?.*')"><a href="{{ url('/paciente/cadastrar') }}">Cadastrar Paciente</a></li>
+                <li class="@active('servico/lista/?.*')"><a href="{{ url('/servico/lista') }}">Lista Serviços</a></li>
+                <li class="@active('servico/cadastrar/?.*')"><a href="{{ url('/servico/cadastrar') }}">Cadastrar Serviço</a></li>
             </ul>
         </div>
     </div>
 </nav>
 @endsection
 @section('content')
-	<div style="margin-top: 7%"></div>
-	@yield('sub-content')
+    <div style="margin-top: 7%"></div>
+    @yield('sub-content')
 @endsection

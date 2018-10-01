@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Consulta;
 use Illuminate\Http\Request;
+use App\Servico;
+use View;
+use Session;
+use Redirect;
 
-class ConsultaController extends Controller
+
+class ServicoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return Consulta::with(['paciente', 'dentista'])->get();
+
+        $servicos = Servico::all();
+
+        return View::make('servico.lista')
+            ->with('servicos', $servicos);
     }
 
     /**
@@ -24,7 +32,7 @@ class ConsultaController extends Controller
      */
     public function create()
     {
-        //
+        return View::make('servico.cadastrar');
     }
 
     /**
@@ -35,19 +43,18 @@ class ConsultaController extends Controller
      */
     public function store(Request $request)
     {
-
-        // dd($request->all());
-        $consulta = Consulta::create($request->all());
-        return ["consulta"=>$consulta];
+        $servico = Servico::create($request->all());
+        Session::flash('message', 'Serviço criado com sucesso!');
+        return Redirect::to('servico/lista');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Consulta  $consulta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Consulta $consulta)
+    public function show($id)
     {
         //
     }
@@ -55,49 +62,47 @@ class ConsultaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Consulta  $consulta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Consulta $consulta)
+    public function edit($id)
     {
-        //
+        $servico = Servico::find($id);
+
+        return View::make('servico.editar')
+            ->with('servico', $servico);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Consulta  $consulta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
-        $consulta = Consulta::find($id);
+    {
+        $servico = Servico::find($id);
 
-        $consulta->paciente_id = $request->paciente_id;
-        $consulta->dentista_id = $request->dentista_id;
-        $consulta->dente_id = $request->dente_id;
-        $consulta->servico_id = $request->tipo_servico_id;
-        $consulta->data = $request->data;
+        $servico->nome = $request->nome;
+        $servico->save();
 
-        $consulta->save();
-
-        return $consulta;
-
+        Session::flash('message', 'Serviço editado com sucesso!');
+        return Redirect::to('servico/lista');   
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Consulta  $consulta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $consulta = Consulta::find($id);
+        $servico = Servico::find($id);
+        $servico->delete();
 
-        $consulta->delete();
-
-        return $consulta;
+        Session::flash('message', 'Serviço deletado com sucesso');
+        return Redirect::to('servico/lista');
     }
 }

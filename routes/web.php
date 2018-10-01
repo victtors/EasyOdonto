@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,7 +29,18 @@ Route::post('paciente/delete/{id}', 'PacienteController@destroy');
 Route::get('paciente/edit/{id}', 'PacienteController@edit');
 Route::post('paciente/edit/{id}', 'PacienteController@update');
 
-Route::get('agenda', 'ConsultaController@index');
+Route::get('users/lista', 'UserController@index');
+
+Route::get('servico/lista', 'ServicoController@index');
+Route::get('servico/cadastrar', 'ServicoController@create');
+Route::post('servicos', 'ServicoController@store')->name('servicos');
+Route::post('servico/delete/{id}', 'ServicoController@destroy');
+Route::get('servico/edit/{id}', 'ServicoController@edit');
+Route::post('servico/edit/{id}', 'ServicoController@update');
+
+Route::get('/agenda', function(){
+	return view('agenda.agenda');
+});
 
 Auth::routes();
 

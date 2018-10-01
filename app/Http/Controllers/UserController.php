@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Consulta;
 use Illuminate\Http\Request;
+use App\User;
 
-class ConsultaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,11 @@ class ConsultaController extends Controller
      */
     public function index(Request $request)
     {
-        return Consulta::with(['paciente', 'dentista'])->get();
+        $users = User::where('nome', 'like','%'.$request->s.'%')->where('tipo', 'D')->get();
+
+        if($request->api){
+            return ["data" => $users];
+        }
     }
 
     /**
@@ -35,19 +39,16 @@ class ConsultaController extends Controller
      */
     public function store(Request $request)
     {
-
-        // dd($request->all());
-        $consulta = Consulta::create($request->all());
-        return ["consulta"=>$consulta];
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Consulta  $consulta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Consulta $consulta)
+    public function show($id)
     {
         //
     }
@@ -55,10 +56,10 @@ class ConsultaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Consulta  $consulta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Consulta $consulta)
+    public function edit($id)
     {
         //
     }
@@ -67,37 +68,22 @@ class ConsultaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Consulta  $consulta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
-        $consulta = Consulta::find($id);
-
-        $consulta->paciente_id = $request->paciente_id;
-        $consulta->dentista_id = $request->dentista_id;
-        $consulta->dente_id = $request->dente_id;
-        $consulta->servico_id = $request->tipo_servico_id;
-        $consulta->data = $request->data;
-
-        $consulta->save();
-
-        return $consulta;
-
+    {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Consulta  $consulta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $consulta = Consulta::find($id);
-
-        $consulta->delete();
-
-        return $consulta;
+        //
     }
 }

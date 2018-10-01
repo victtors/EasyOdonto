@@ -15,12 +15,19 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pacientes = Paciente::all();
 
-        return View::make('paciente.lista')
+        $pacientes = Paciente::where('nome', 'like','%'.$request->s.'%')
+        ->orWhere('cpf', 'like','%'.$request->s.'%')->get();
+
+        if($request->api){
+            return ["data" => $pacientes];
+        }
+        else{   
+            return View::make('paciente.lista')
             ->with('pacientes', $pacientes);
+        }
     }
 
     /**

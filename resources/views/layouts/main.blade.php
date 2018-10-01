@@ -14,15 +14,16 @@
 <body class="cm-no-transition cm-1-navbar">
 	<div id="cm-menu">
 	    <nav class="cm-navbar cm-navbar-primary">
-	        <div class="cm-flex"><a href="index.html" class="cm-logo"></a></div>
+	        <div class="cm-flex"><a href="{{url('agenda')}}" class="cm-logo"></a></div>
 	        <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
 	    </nav>
 	    <div id="cm-menu-content">
 	        <div id="cm-menu-items-wrapper">
 	            <div id="cm-menu-scroller">
 	                <ul class="cm-menu-items">
-	                    <li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-house">Paciente</a></li>
 	                    <li class="@active('agenda/?.*')"><a href="{{url('agenda')}}" class="sf-house">Agenda</a></li>
+	                    <li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-house">Paciente</a></li>
+	                    <li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class="sf-house">Serviço</a></li>
 	                </ul>
 	            </div>
 	        </div>
@@ -33,7 +34,7 @@
 	</header>
 	<div id="global">
 		@yield('content')
-		<footer class="cm-footer"><span class="pull-left">TCC</span><span class="pull-right">&copy; Easy Odonto</span></footer>
+		<!-- <footer class="cm-footer"><span class="pull-left">TCC</span><span class="pull-right">&copy; Easy Odonto</span></footer> -->
 	</div>
     <script src="{{ asset('js/lib/jquery-2.1.3.min.js') }}"></script>
     <script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
