@@ -14,17 +14,17 @@
 <body class="cm-no-transition cm-1-navbar">
 	<div id="cm-menu">
 	    <nav class="cm-navbar cm-navbar-primary">
-	        <div class="cm-flex"><a href="{{url('agenda')}}" class="cm-logo"></a></div>
+			<div class="cm-flex"><a href="{{url('agenda')}}"></a></div>
 	        <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
 	    </nav>
 	    <div id="cm-menu-content">
 	        <div id="cm-menu-items-wrapper">
 	            <div id="cm-menu-scroller">
 	                <ul class="cm-menu-items">
-	                    <li class="@active('agenda/?.*')"><a href="{{url('agenda')}}" class="sf-house">Agenda</a></li>
-	                    <li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-house">Paciente</a></li>
-	                    <li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class="sf-house">Serviço</a></li>
-	                    <li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class="sf-house">Funcionário</a></li>
+	                    <li class="@active('agenda/?.*')"><a href="{{url('agenda')}}" class="sf-book">Agenda</a></li>
+	                    <li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-profile">Paciente</a></li>
+	                    <li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class="sf-file-text">Serviço</a></li>
+	                    <li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class=" sf-sign-add">Funcionário</a></li>
 	                </ul>
 	            </div>
 	        </div>
