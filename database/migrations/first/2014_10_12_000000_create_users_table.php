@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('nome');
             $table->string('usuario', 60)->unique();
             $table->string('cpf');
-            $table->enum('tipo', ['A', 'D']);
+            $table->enum('tipo', ['A', 'D', 'ADM']);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

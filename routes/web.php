@@ -39,6 +39,13 @@ Route::post('servico/delete/{id}', 'ServicoController@destroy');
 Route::get('servico/edit/{id}', 'ServicoController@edit');
 Route::post('servico/edit/{id}', 'ServicoController@update');
 
+Route::get('funcionario/lista', 'UserController@index');
+Route::get('funcionario/cadastrar', 'UserController@create');
+Route::post('funcionarios', 'UserController@store')->name('funcionarios');
+Route::post('funcionario/delete/{id}', 'UserController@destroy');
+Route::get('funcionario/edit/{id}', 'UserController@edit');
+Route::post('funcionario/edit/{id}', 'UserController@update');
+
 Route::get('/agenda', function(){
 	return view('agenda.agenda');
 });

@@ -24,6 +24,7 @@
 	                    <li class="@active('agenda/?.*')"><a href="{{url('agenda')}}" class="sf-house">Agenda</a></li>
 	                    <li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-house">Paciente</a></li>
 	                    <li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class="sf-house">Serviço</a></li>
+	                    <li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class="sf-house">Funcionário</a></li>
 	                </ul>
 	            </div>
 	        </div>
@@ -39,6 +40,7 @@
     <script src="{{ asset('js/lib/jquery-2.1.3.min.js') }}"></script>
     <script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
     <script src="{{ asset('js/jquery.cookie.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-3.1.js') }}"></script>
     <script src="{{ asset('js/fastclick.min.js') }}"></script>
     <script src="{{ asset('js/clearmin.min.js') }}"></script>
 </body>

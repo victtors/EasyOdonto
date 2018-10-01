@@ -75,15 +75,15 @@
     }
 </style>
 <link rel="stylesheet" type="text/css" href="./css/select.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css"> 
+<link rel="stylesheet" href="./css/bootstrap-3.1.css">
+<link rel="stylesheet" href="./css/select2.css"> 
 <link rel="stylesheet" href="./css/fullcalendar.css"/>
 <link rel="stylesheet" href="./css/ui-bootstrap-csp.css">
 <!-- jquery, moment, and angular have to get included before fullcalendar -->
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/moment.min.js"></script>
 <script type="text/javascript" src="./js/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.14/angular-sanitize.js"></script>
+<script src="./js/angular-sanitize.js"></script>
 <script type="text/javascript" src="./js/calendar.js"></script>
 <script type="text/javascript" src="./js/fullcalendar.min.js"></script>
 <script type="text/javascript" src="./js/gcal.js"></script>

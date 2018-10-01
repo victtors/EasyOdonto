@@ -3,7 +3,7 @@
 <nav class="cm-navbar cm-navbar-primary">
     <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
     <div class="cm-flex">
-        <h1>Serviço</h1> 
+        <h1>Funcionários</h1> 
         <form id="cm-search" action="index.html" method="get">
             <input type="search" name="q" autocomplete="off" placeholder="Search...">
         </form>
@@ -63,8 +63,8 @@
     <div class="cm-flex">
         <div class="nav-tabs-container">
             <ul class="nav nav-tabs">
-                <li class="@active('servico/lista/?.*')"><a href="{{ url('/servico/lista') }}">Lista Serviços</a></li>
-                <li class="@active('servico/cadastrar/?.*')"><a href="{{ url('/servico/cadastrar') }}">Cadastrar Serviço</a></li>
+                <li class="@active('funcionario/lista/?.*')"><a href="{{ url('/funcionario/lista') }}">Lista Funcionários</a></li>
+                <li class="@active('funcionario/cadastrar/?.*')"><a href="{{ url('/funcionario/cadastrar') }}">Cadastrar Funcionário</a></li>
             </ul>
         </div>
     </div>
