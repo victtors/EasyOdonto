@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use View;
+use Session;
+use Redirect;
+
 class UserController extends Controller
 {
     /**
@@ -13,10 +17,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::where('nome', 'like','%'.$request->s.'%')->where('tipo', 'D')->get();
 
         if($request->api){
+            $users = User::where('nome', 'like','%'.$request->s.'%')->where('tipo', 'D')->get();
             return ["data" => $users];
+        }
+        else{  
+            $users = User::all();
+            return View::make('funcionario.lista')
+            ->with('funcionarios', $users);
         }
     }
 
@@ -27,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return View::make('funcionario.cadastrar');
     }
 
     /**
@@ -38,7 +47,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $funcionario = User::create($request->all());
+        Session::flash('message', 'Funcionário criado com sucesso!');
+        return Redirect::to('funcionario/lista');
     }
 
     /**
@@ -60,7 +71,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $funcionario = User::find($id);
+
+        return View::make('funcionario.editar')
+            ->with('funcionario', $funcionario);
     }
 
     /**
@@ -72,7 +86,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $funcionario = User::find($id);
+
+        $funcionario->fill($request->all());
+
+        $funcionario->save();
+
+        Session::flash('message', 'Funcionário editado com sucesso!');
+        return Redirect::to('funcionario/lista'); 
     }
 
     /**
@@ -83,6 +104,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $funcionario = User::find($id);
+        $funcionario->delete();
+
+        Session::flash('message', 'Funcionário deletado com sucesso');
+        return Redirect::to('funcionario/lista');
     }
 }

@@ -11,7 +11,7 @@
 		                	<div class="form-group">
 		                        <label for="nome" class="col-sm-1 control-label">Nome: </label>
 		                        <div class="col-sm-10">
-		                            <input type="text" class="form-control" placeholder="Nome do paciente" name="nome" value="{{$servico->nome}}">
+		                            <input type="text" class="form-control" placeholder="Nome do serviço" name="nome" value="{{$servico->nome}}">
 		                        </div>
 		                    </div>
 		                    <button style="float: right" type="submit" class="btn btn-primary">Salvar</button>

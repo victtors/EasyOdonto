@@ -71,6 +71,6 @@
 </nav>
 @endsection
 @section('content')
-	<div style="margin-top: 7%"></div>
+	<div style="margin-top: 4%"></div>
 	@yield('sub-content')
 @endsection
