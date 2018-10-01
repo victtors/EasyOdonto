@@ -8,6 +8,7 @@ use View;
 use Session;
 use Redirect;
 
+<<<<<<< HEAD
 
 class ServicoController extends Controller
 {
@@ -105,4 +106,62 @@ class ServicoController extends Controller
         Session::flash('message', 'Serviço deletado com sucesso');
         return Redirect::to('servico/lista');
     }
+=======
+class ServicoController extends Controller
+{
+
+		private $servicos;
+
+		public function __construct(AgendaController $agenda_controller) {
+
+			$this->servicos = new Servico();
+		}
+
+    public function index() {
+
+    	$list_servico = Servico::all();
+    	return view('servico.cadastrarServico', [
+    		'servico' => $list_servico
+    	]);
+	}
+
+    public function cadastrarServicoView() {
+			return view("servico.cadastrarServico");
+	}
+
+	public function editarServicoView($id) {
+
+		$servico = Servico::find($id);
+        return View::make('servico.editarServico')->with('servico', $servico);
+	}
+
+	public function updateServico(Request $request, $id) {
+
+		$servico = Servico::find($id);
+		$servico->nome_servico = $request->nome_servico;
+		$servico->save();
+		Session::flash('message', 'Serviço editado com sucesso!');
+		return redirect('servico/listaServico');        
+    }
+
+		
+	public function listaServicoView() {
+		$servicos = Servico::all();
+    	return view('servico.listaServico', [
+    		'servicos' => $servicos
+    	]);
+	}
+    
+    public function storeServico(Request $request){
+			Servico::create($request->all());
+			return redirect ("/servico/listaServico") -> with("message", "Serviço cadastrado com sucesso!");
+	}
+
+	public function deletarServico(Request $request, $id){
+		$servico = Servico::find($id);
+		$servico->id = $request->id;
+		$servico->delete();
+		return redirect ("servico/listaServico") -> with("message", "Serviço deletado com sucesso!");
+	}
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
 }

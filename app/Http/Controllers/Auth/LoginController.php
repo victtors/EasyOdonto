@@ -27,11 +27,14 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+<<<<<<< HEAD
     public function username()
     {
         return 'usuario';
     }
 
+=======
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
     /**
      * Create a new controller instance.
      *
@@ -41,6 +44,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
 }

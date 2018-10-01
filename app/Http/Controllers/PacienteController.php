@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Paciente;
 use Illuminate\Http\Request;
+=======
+use Illuminate\Http\Request;
+use App\Pacientes;
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
 use View;
 use Session;
 use Redirect;
 
+<<<<<<< HEAD
 class PacienteController extends Controller
 {
     /**
@@ -113,4 +119,25 @@ class PacienteController extends Controller
         Session::flash('message', 'Paciente deletado com sucesso');
         return Redirect::to('paciente/lista');
     }
+=======
+class PacienteController extends Controller {
+
+    public function index() {
+
+    	$list_pacientes = Pacientes::all();
+    	return view('paciente.cadastrar', [
+    		'pacientes' => $list_pacientes
+    	]);
+	}
+	
+	public function cadastrarView() {
+		return view("paciente.cadastrar");
+	}
+
+	public function storePaciente(Request $request){
+		Pacientes::create($request->all());
+		
+		return redirect ("/") -> with("message", "Paciente cadastrado com sucesso!");
+	}
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
 }

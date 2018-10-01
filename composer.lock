@@ -455,6 +455,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v5.7.2",
             "source": {
                 "type": "git",
@@ -465,6 +466,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/86e1f98a6d2aab018e0257a7cb2ef2110d64a873",
                 "reference": "86e1f98a6d2aab018e0257a7cb2ef2110d64a873",
+=======
+            "version": "v5.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "4a5955e325faa2054420eeb7320cc2c81111a2f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/4a5955e325faa2054420eeb7320cc2c81111a2f2",
+                "reference": "4a5955e325faa2054420eeb7320cc2c81111a2f2",
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
                 "shasum": ""
             },
             "require": {
@@ -552,7 +565,10 @@
                 "league/flysystem-cached-adapter": "Required to use the Flysystem cache (^1.0).",
                 "league/flysystem-rackspace": "Required to use the Flysystem Rackspace driver (^1.0).",
                 "league/flysystem-sftp": "Required to use the Flysystem SFTP driver (^1.0).",
+<<<<<<< HEAD
                 "moontoast/math": "Required to use ordered UUIDs (^1.1).",
+=======
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
                 "nexmo/client": "Required to use the Nexmo transport (^1.0).",
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (^3.0).",
                 "predis/predis": "Required to use the redis cache and queue drivers (^1.0).",
@@ -592,7 +608,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2018-09-06T14:01:05+00:00"
+=======
+            "time": "2018-09-04T18:28:50+00:00"
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
         },
         {
             "name": "laravel/tinker",
@@ -3319,6 +3339,7 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
             "version": "7.3.5",
             "source": {
                 "type": "git",
@@ -3329,6 +3350,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7b331efabbb628c518c408fdfcaf571156775de2",
                 "reference": "7b331efabbb628c518c408fdfcaf571156775de2",
+=======
+            "version": "7.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "0356331bf62896dc56e3a15030b23b73f38b2935"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0356331bf62896dc56e3a15030b23b73f38b2935",
+                "reference": "0356331bf62896dc56e3a15030b23b73f38b2935",
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
                 "shasum": ""
             },
             "require": {
@@ -3399,7 +3432,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2018-09-08T15:14:29+00:00"
+=======
+            "time": "2018-09-05T09:58:53+00:00"
+>>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
