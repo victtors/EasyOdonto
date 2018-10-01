@@ -15,10 +15,10 @@ class CreateConsulta extends Migration
     {
         Schema::create('consultas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('paciente_id')->unsigned()->nullable();
-            $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('set null');
-            $table->integer('dentista_id')->unsigned()->nullable();
-            $table->foreign('dentista_id')->references('id')->on('users')->onDelete('set null');
+            $table->integer('paciente_id')->unsigned();
+            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->integer('dentista_id')->unsigned();
+            $table->foreign('dentista_id')->references('id')->on('users');
             $table->integer('dente_id')->unsigned()->nullable();
             $table->foreign('dente_id')->references('id')->on('dentes')->onDelete('set null');
             $table->integer('servico_id')->unsigned()->nullable();

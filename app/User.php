@@ -2,7 +2,6 @@
 
 namespace App;
 
-<<<<<<< HEAD
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -33,23 +32,5 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Consulta');
     }
-=======
-use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
-{
-    protected $fillable =   [
-        'nome',
-        'cpf',
-        'tipo_usuario',
-        'cro',
-        'login',
-        'senha',
-        'especialidade',
-        'telefone'
-        
-    ];
-
-    protected $table = 'user';
->>>>>>> d829b292b794c5b02f3f28e9e50e8c6a68cdb0a4
 }

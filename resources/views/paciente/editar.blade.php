@@ -15,6 +15,13 @@
 		                        </div>
 		                    </div>
 
+                    		<div class="form-group">
+		                        <label for="nome" class="col-sm-1 control-label">CPF: </label>
+		                        <div class="col-sm-10">
+		                            <input type="text" class="form-control" placeholder="CPF do paciente" name="cpf" value="{{$paciente->cpf}}">
+		                        </div>
+		                    </div>
+
 							<div class="form-group">
 		                        <label for="data_nascimento" class="col-sm-1 control-label">Data de Nascimento</label>
 		                        <div class="col-sm-3">
