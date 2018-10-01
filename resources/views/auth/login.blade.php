@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <div class="cm-login">
 
   <div class="text-center" style="padding:90px 0 30px 0;background:#fff;border-bottom:1px solid #ddd">
@@ -30,4 +27,8 @@
     </form>
   </div>
 </div>
-@endsection
+<link href="{{ asset('css/bootstrap-clearmin.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/roboto.css') }}" rel="stylesheet">
+<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/material-design.css') }}" rel="stylesheet">
+<link href="{{ asset('css/small-n-flat.css') }}" rel="stylesheet">

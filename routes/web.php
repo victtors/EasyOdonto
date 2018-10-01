@@ -11,9 +11,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Route::get('/paciente/lista', function () {
 //     return view('paciente.lista');
@@ -49,6 +46,10 @@ Route::post('funcionario/edit/{id}', 'UserController@update');
 Route::get('/agenda', function(){
 	return view('agenda.agenda');
 });
+
+Route::get('/', function(){
+	return view('auth.login');
+})->middleware('guest');
 
 Auth::routes();
 

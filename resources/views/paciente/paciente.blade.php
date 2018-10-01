@@ -44,18 +44,23 @@
         <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>
         <ul class="dropdown-menu">
             <li class="disabled text-center">
-                <a style="cursor:default;"><strong>John Smith</strong></a>
+                <a style="cursor:default;"><strong>{{ Auth::user()->nome }}</strong></a>
             </li>
             <li class="divider"></li>
-            <li>
+<!--             <li>
                 <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
-            </li>
+            </li> -->
             <li>
-                <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();"><i class="fa fa-fw fa-sign-out"></i> Sair</a>
             </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </ul>
     </div>
 </nav>

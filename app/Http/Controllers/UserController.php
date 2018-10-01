@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use View;
+use Illuminate\Support\Facades\Hash;
 use Session;
 use Redirect;
 
@@ -47,7 +48,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $funcionario = User::create($request->all());
+        $funcionario = User::create([
+            'nome' => $request['nome'],
+            'usuario' => $request['usuario'],
+            'password' => Hash::make($request['password']),
+            'cpf' => $request['cpf'],
+            'tipo' => $request['tipo']
+        ]);
         Session::flash('message', 'Funcionário criado com sucesso!');
         return Redirect::to('funcionario/lista');
     }

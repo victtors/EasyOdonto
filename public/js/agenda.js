@@ -18,114 +18,150 @@
             className: 'gcal-event'
         }
 
-        vm.uiConfig = {
-            calendar:{
-                height: 450,
-                editable: true,
-                defaultView: 'agendaWeek',
-                header:{
-                    right: 'today prev,next',
-                },
-                buttonText: {
-                    today: 'Hoje'
-                },
-                dayClick: function(date, evt, view){
-                    const data = new Date(date.format())
-                    const modalCriarConsulta = $uibModal.open({
-                        animation: true,
-                        templateUrl: 'modalCriarConsulta.html',
-                        controller: 'modalCriarConsultaController',
-                        controllerAs: 'vm',
-                        resolve: {
-                          evento: () => {
-                            return data
-                          },
-                          pacientes: () => {
-                            return []
-                          }
-                        }
-                    })
-
-                    modalCriarConsulta.result.then((consulta) => {
-                        $http.post("http://localhost:8000/api/consulta", consulta)
-                            .then(
-                                (response) => {
-                                    console.log(response)
-                                    vm.renderCalendar = false
-                                    getConsultas()
-                                },
-                                (error) => {
-                                    console.log(error)
+        function setCalendarConfig(tipo_usuario) {
+            console.log(tipo_usuario)
+            if(tipo_usuario == 'A' || tipo_usuario == 'ADM'){
+                vm.uiConfig = {
+                    calendar:{
+                        height: 600,
+                        editable: true,
+                        defaultView: 'agendaWeek',
+                        header:{
+                            right: 'today prev,next',
+                        },
+                        buttonText: {
+                            today: 'Hoje'
+                        },
+                        dayClick: function(date, evt, view){
+                            const data = new Date(date.format())
+                            const modalCriarConsulta = $uibModal.open({
+                                animation: true,
+                                templateUrl: 'modalCriarConsulta.html',
+                                controller: 'modalCriarConsultaController',
+                                controllerAs: 'vm',
+                                resolve: {
+                                  evento: () => {
+                                    return data
+                                  },
+                                  pacientes: () => {
+                                    return []
+                                  }
                                 }
-                            )
-                    }, () => {
-                  
-                    })
-                    // let consulta = {
-                    //     paciente_id: 1,
-                    //     dentista_id: 1,
-                    //     tipo_servico_id: 1,
-                    //     dente_id: 1,
-                    //     data: new Date(data.getFullYear(), data.getMonth(), data.getDate(), data.getHours() - 5, 0).toMysqlFormat(),
-                    // }
-                    // $http.post('http://localhost:8000/api/consulta', consulta)
-                    //     .then(
-                    //     (response) => {
-                    //         console.log(response)
-                    //         vm.renderCalendar = false
-                    //         getConsultas()
-                    //     }
-                    //     , (error) => console.log(error))
-                },
-                eventClick: function(evt){
-                    const modalEvento = $uibModal.open({
-                        animation: true,
-                        templateUrl: 'modalEvento.html',
-                        controller: 'modalController',
-                        controllerAs: 'vm',
-                        resolve: {
-                          evento: () => {
-                            return evt
-                          }
-                        }
-                      })
+                            })
 
-                    modalEvento.result.then(() => {
+                            modalCriarConsulta.result.then((consulta) => {
+                                $http.post("http://localhost:8000/api/consulta", consulta)
+                                    .then(
+                                        (response) => {
+                                            console.log(response)
+                                            vm.renderCalendar = false
+                                            getConsultas()
+                                        },
+                                        (error) => {
+                                            console.log(error)
+                                        }
+                                    )
+                            }, () => {
+                          
+                            })
+                        },
+                        eventClick: function(evt){
+                            const modalEvento = $uibModal.open({
+                                animation: true,
+                                templateUrl: 'modalEvento.html',
+                                controller: 'modalController',
+                                controllerAs: 'vm',
+                                resolve: {
+                                  evento: () => {
+                                    return evt
+                                  }
+                                }
+                              })
 
-                    }, () => {
-                        vm.renderCalendar = false
-                        getConsultas()
-                    })
+                            modalEvento.result.then(() => {
 
-                },
-                eventDrop: function(evt){
-                    let data = new Date(evt.start.format())
-                    let consulta = {
-                        paciente_id: evt.paciente_id,
-                        dentista_id: evt.dentista_id,
-                        tipo_servico_id: evt.tipo_servico_id,
-                        dente_id: evt.dente_id,
-                        data: new Date(data.getFullYear(), data.getMonth(), data.getDate(), data.getHours() - 5, 0).toMysqlFormat(),
-                    }
-                    $http.put("http://localhost:8000/api/consulta/"+evt.id, consulta)
-                        .then(
-                            (response) => {
-                                console.log(response)
+                            }, () => {
+                                vm.renderCalendar = false
                                 getConsultas()
-                            },
-                            (error) => {
-                                console.log(error)
+                            })
+
+                        },
+                        eventDrop: function(evt){
+                            let data = new Date(evt.start.format())
+                            let consulta = {
+                                paciente_id: evt.paciente_id,
+                                dentista_id: evt.dentista_id,
+                                tipo_servico_id: evt.tipo_servico_id,
+                                dente_id: evt.dente_id,
+                                data: new Date(data.getFullYear(), data.getMonth(), data.getDate(), data.getHours() - 5, 0).toMysqlFormat(),
                             }
-                        )
-                },
-                allDaySlot: false,
-                slotDuration: '01:00:00',
-                dayNames: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
-                dayNamesShort: ['Seg', 'Ter', 'Quar', 'Quin', 'Sex', 'Sab', 'Dom'],
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto',
-                            'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abri', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'
-                                ,'Nov', 'Dez'],
+                            $http.put("http://localhost:8000/api/consulta/"+evt.id, consulta)
+                                .then(
+                                    (response) => {
+                                        console.log(response)
+                                        getConsultas()
+                                    },
+                                    (error) => {
+                                        console.log(error)
+                                    }
+                                )
+                        },
+                        allDaySlot: false,
+                        slotDuration: '01:00:00',
+                        dayNames: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                        dayNamesShort: ['Seg', 'Ter', 'Quar', 'Quin', 'Sex', 'Sab', 'Dom'],
+                        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto',
+                                    'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abri', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'
+                                        ,'Nov', 'Dez'],
+                    }
+                }
+            }else{
+                vm.uiConfig = {
+                    calendar:{
+                        height: 600,
+                        editable: false,
+                        defaultView: 'agendaWeek',
+                        header:{
+                            right: 'today prev,next',
+                        },
+                        buttonText: {
+                            today: 'Hoje'
+                        },
+                        dayClick: function(date, evt, view){
+                            console.log(date)
+                        },
+                        eventClick: function(evt){
+                            const modalEvento = $uibModal.open({
+                                animation: true,
+                                templateUrl: 'modalEvento.html',
+                                controller: 'modalController',
+                                controllerAs: 'vm',
+                                resolve: {
+                                  evento: () => {
+                                    return evt
+                                  }
+                                }
+                              })
+
+                            modalEvento.result.then(() => {
+
+                            }, () => {
+                                vm.renderCalendar = false
+                                getConsultas()
+                            })
+
+                        },
+                        allDaySlot: false,
+                        slotDuration: '01:00:00',
+                        dayNames: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                        dayNamesShort: ['Seg', 'Ter', 'Quar', 'Quin', 'Sex', 'Sab', 'Dom'],
+                        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto',
+                                    'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abri', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'
+                                        ,'Nov', 'Dez'],
+                    }
+                }
             }
         }
 
@@ -162,6 +198,7 @@
                                 durationEditable: false
                             })
                         })
+                        setCalendarConfig(vm.user.tipo)
                         vm.eventSources = [events, vm.eventSource]
                         vm.renderCalendar = true
                     },

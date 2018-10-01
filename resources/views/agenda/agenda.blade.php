@@ -2,7 +2,7 @@
 @section('sub-content')
 <div ng-app="app" class="container" style="margin-top: 2%">
     <div class="row">
-        <div ng-controller="calendarController as vm">
+        <div ng-controller="calendarController as vm" ng-init="vm.user = {{ Auth::user() }}">
             <div ui-calendar="vm.uiConfig.calendar" class="span8 calendar" ng-model="vm.eventSources" ng-if="vm.renderCalendar"></div>
             <script type="text/ng-template" id="modalEvento.html">
                 <div class="modal-header">
@@ -15,7 +15,9 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" type="button" ng-click="vm.fechar()">Fechar</button>
-                    <button class="btn btn-danger" type="button" ng-click="vm.excluir()">Desmarcar</button>
+                    @if(Auth::user()->tipo == 'A')
+                      <button class="btn btn-danger" type="button" ng-click="vm.excluir()">Desmarcar</button>
+                    @endif
                 </div>
             </script>
             <script type="text/ng-template" id="modalCriarConsulta.html">

@@ -22,9 +22,13 @@
 	            <div id="cm-menu-scroller">
 	                <ul class="cm-menu-items">
 	                    <li class="@active('agenda/?.*')"><a href="{{url('agenda')}}" class="sf-house">Agenda</a></li>
-	                    <li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-house">Paciente</a></li>
-	                    <li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class="sf-house">Serviço</a></li>
-	                    <li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class="sf-house">Funcionário</a></li>
+	                    @if(Auth::user()->tipo == 'ADM' or Auth::user()->tipo == 'A')
+	                    	<li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-house">Paciente</a></li>
+	                    @endif
+	                   	@if(Auth::user()->tipo == 'ADM')
+	                    	<li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class="sf-house">Serviço</a></li>
+	                    	<li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class="sf-house">Funcionário</a></li>
+	                    @endif
 	                </ul>
 	            </div>
 	        </div>
