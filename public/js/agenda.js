@@ -12,6 +12,9 @@
         const m = date.getMonth()
         const y = date.getFullYear()
 
+        vm.buscarDentistas = buscarDentistas
+        vm.dentistas = []
+        vm.getConsultas = getConsultas
 
         vm.eventSource = {
             currentTimezone: 'America/Rio_Branco',
@@ -54,8 +57,7 @@
                                     .then(
                                         (response) => {
                                             console.log(response)
-                                            vm.renderCalendar = false
-                                            getConsultas()
+                                            getConsultas(response.data.consulta.dentista_id)
                                         },
                                         (error) => {
                                             console.log(error)
@@ -72,17 +74,21 @@
                                 controller: 'modalController',
                                 controllerAs: 'vm',
                                 resolve: {
-                                  evento: () => {
-                                    return evt
-                                  }
+                                    evento: () => {
+                                        return evt
+                                    },
+                                    servicos: () => null,
+                                    dentes: () => null,
+                                    tratamentos: () => null,
+                                    user: () => null 
                                 }
-                              })
+                            })
 
                             modalEvento.result.then(() => {
 
                             }, () => {
                                 vm.renderCalendar = false
-                                getConsultas()
+                                getConsultas(vm.dentista.id)
                             })
 
                         },
@@ -99,7 +105,7 @@
                                 .then(
                                     (response) => {
                                         console.log(response)
-                                        getConsultas()
+                                        getConsultas(response.data.dentista_id)
                                     },
                                     (error) => {
                                         console.log(error)
@@ -137,9 +143,30 @@
                                 templateUrl: 'modalEvento.html',
                                 controller: 'modalController',
                                 controllerAs: 'vm',
+                                size: 'lg',
                                 resolve: {
                                   evento: () => {
                                     return evt
+                                  },
+                                  servicos: () => {
+                                    return $http.get("http://localhost:8000/servico/lista?api=true").then((response) => {
+                                        return response.data.data
+                                    })
+                                  },
+                                  dentes: () => {
+                                    return $http.get("http://localhost:8000/dente/lista?api=true").then((response) => {
+                                        return response.data.data
+                                    })
+                                  },
+                                  tratamentos: () => {
+                                    return $http.get("http://localhost:8000/tratamento/lista?api=true&paciente_id="+evt.paciente_id)
+                                        .then(
+                                            response => response.data.data,
+                                            error => console.log(error)
+                                        )
+                                  },
+                                  user: () => {
+                                    return vm.user
                                   }
                                 }
                               })
@@ -169,11 +196,19 @@
         init()
 
         function init(){
-            getConsultas();
+            console.log(vm.user)
+            buscarDentistas();
+            setTimeout(() => {
+                if(vm.user.tipo == 'D')
+                    getConsultas(vm.user.id)
+            }, 100)
         }
 
-        function getConsultas(){
-            $http.get('http://localhost:8000/api/consulta')
+        function getConsultas(dentista_id){
+            vm.renderCalendar = false
+            if(vm.user.tipo == 'D' && !dentista_id)
+                dentista_id = vm.user.id
+            $http.get('http://localhost:8000/api/consulta?dentista_id='+dentista_id)
                 .then(
                     (response) => {
                         console.log(response)
@@ -201,6 +236,19 @@
                         setCalendarConfig(vm.user.tipo)
                         vm.eventSources = [events, vm.eventSource]
                         vm.renderCalendar = true
+                    },
+                    (error) => {
+                        console.log(error)
+                    }
+                )
+        }
+
+        function buscarDentistas(busca){
+            $http.get("http://localhost:8000/users/lista?s="+busca+'&api=true&dentista=true')
+                .then(
+                    (response) => {
+                        console.log(response)
+                        vm.dentistas = response.data.data
                     },
                     (error) => {
                         console.log(error)
@@ -273,19 +321,29 @@
 
     }
 
-    function modalController($uibModalInstance, evento, $http){
+    function modalController($uibModalInstance, evento, $http, servicos, dentes, user, tratamentos){
         const vm = this
+
+        console.log(tratamentos)
 
         vm.salvar = salvar
         vm.fechar = fechar
         vm.evento = evento
         vm.excluir = excluir
+        vm.buscarDentistas = buscarDentistas
+        vm.servicos = servicos
+        vm.dentes = dentes
+        vm.salvarTratamento = salvarTratamento
+        vm.dentistas = []
+        vm.tratamentos = []
 
 
         init()
 
         function init(){
+            buscarDentistas()
             console.log(evento)
+            vm.tratamentos = tratamentos
         }
 
         function salvar(){
@@ -308,6 +366,66 @@
                     }
                 )
         }
+
+        function buscarDentistas(busca){
+            $http.get("http://localhost:8000/users/lista?s="+busca+'&api=true&dentista=true')
+                .then(
+                    (response) => {
+                        console.log(response)
+                        vm.dentistas = response.data.data
+                    },
+                    (error) => {
+                        console.log(error)
+                    }
+                )
+        }
+
+        function buscarServicos(busca){
+            $http.get("http://localhost:8000/servico/lista?api=true&s="+busca).then(
+                (response) => {
+                    console.log(response)
+                    vm.servicos = response.data.data
+                },
+                (error) => console.log(error)
+            )
+        }
+
+        function buscarDentes(busca){
+            $http.get("http://localhost:8000/dente/lista?api=true&s="+busca).then(
+                (response) => {
+                    console.log(response)
+                    vm.dentes = response.data.data
+                },
+                (error) => console.log(error)
+            )
+        }
+
+        function salvarTratamento(){
+            let tratamento = {
+                servico_id: vm.servico.id,
+                dente_id: vm.dente.id,
+                dentista_id: user.id,
+                paciente_id: evento.paciente_id
+            }
+            console.log(tratamento)
+            $http.post("http://localhost:8000/tratamentos", tratamento)
+                .then(
+                    response => {
+                        console.log(response)
+                        $http.get("http://localhost:8000/tratamento/lista?api=true&paciente_id="+vm.evento.paciente_id)
+                            .then(
+                                response => {
+                                    vm.servico = null
+                                    vm.dente = null
+                                    vm.tratamentos = response.data.data
+                                },
+                                error => console.log(error)
+                            )
+                    },
+                    error => console.log(error)
+                )
+        }
+
 
 
     }

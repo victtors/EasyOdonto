@@ -3,15 +3,79 @@
 <div ng-app="app" class="container" style="margin-top: 2%">
     <div class="row">
         <div ng-controller="calendarController as vm" ng-init="vm.user = {{ Auth::user() }}">
-            <div ui-calendar="vm.uiConfig.calendar" class="span8 calendar" ng-model="vm.eventSources" ng-if="vm.renderCalendar"></div>
+            @if(Auth::user()->tipo != 'D')
+              <div style="text-align: center">
+                <h3>Agenda de</h3> 
+                <ui-select ng-model="vm.dentista" ng-change="vm.renderCalendar = false;vm.getConsultas(vm.dentista.id)" theme="select2" style="min-width: 300px;" title="Selecione um dentista" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }">
+                    <ui-select-match placeholder="Busque o dentista por nome...">@{{$select.selected.nome}}</ui-select-match>
+                    <ui-select-choices refresh="vm.buscarDentistas($select.search)" repeat="dentista in vm.dentistas | propsFilter: {nome: $select.search}">
+                      <div ng-bind-html="dentista.nome | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+              </div>
+            @endif
+            @if(Auth::user()->tipo == 'D')
+              <div style="text-align: center">
+                <h2>Agenda do dentista {{Auth::user()->nome}}</h2>
+              </div>
+            @endif
+            <div ui-calendar="vm.uiConfig.calendar" class="span8 calendar" ng-model="vm.eventSources" ng-if="(vm.user.tipo == 'D' && vm.renderCalendar) || (vm.renderCalendar && vm.dentista)"></div>
+            @if(Auth::user()->tipo != 'D')
+            <h2 ng-if="!vm.dentista">Por favor, selecione um dentista acima :)</h2>
+            @endif
+            <!-- Select de dentistas -->
             <script type="text/ng-template" id="modalEvento.html">
                 <div class="modal-header">
-                        <h3 class="modal-title" id="modal-title">Evento</h3>
+                  <h3 class="modal-title" id="modal-title">Evento</h3>
                 </div>
                 <div class="modal-body" id="modal-body">
                     <p><b>Nome:</b> @{{vm.evento.title}}</p>
                     <p><b>CPF:</b> @{{vm.evento.paciente.cpf}}</p>
                     <p><b>Dentista:</b>@{{vm.evento.dentista.nome}}</p>
+                    @if(Auth::user()->tipo == 'D')
+                    <hr />
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Dente</th>
+                          <th>Tratamento</th>
+                          <th>Dentista</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="t in vm.tratamentos">
+                          <td>@{{t.dente.nome}} - @{{t.dente.numero}}</td>
+                          <td>@{{t.servico.nome}}</td>
+                          <td>@{{t.dentista.nome}}</td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <form ng-submit="vm.salvarTratamento()">
+                            <td>
+                              <ui-select ng-model="vm.dente" theme="select2" style="min-width: 300px;" title="Selecione um dente" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }">
+                                  <ui-select-match placeholder="Busque dente por nome...">@{{$select.selected.nome}} - @{{$select.selected.id}}</ui-select-match>
+                                  <ui-select-choices refresh="vm.buscarDentistas($select.search)" repeat="dente in vm.dentes | propsFilter: {nome: $select.search}">
+                                    <div ng-bind-html="dente.nome | highlight: $select.search"></div>
+                                  </ui-select-choices>
+                              </ui-select>
+                            </td>
+                            <td>
+                              <ui-select ng-model="vm.servico" theme="select2" style="min-width: 300px;" title="Selecione um serviço" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }">
+                                  <ui-select-match placeholder="Busque o serviço por nome...">@{{$select.selected.nome}}</ui-select-match>
+                                  <ui-select-choices refresh="vm.buscarServicos($select.search)" repeat="servico in vm.servicos | propsFilter: {nome: $select.search}">
+                                    <div ng-bind-html="servico.nome | highlight: $select.search"></div>
+                                  </ui-select-choices>
+                              </ui-select>
+                            </td>
+                            <td>
+                              <button type="submit" ng-click="vm.salvarTratamento()" class="btn btn-success">Feito</button>
+                            </td>
+                          </form>
+                        </tr>
+                      </tfoot>
+                    </table>
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" type="button" ng-click="vm.fechar()">Fechar</button>

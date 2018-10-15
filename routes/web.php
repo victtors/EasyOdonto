@@ -26,6 +26,7 @@ Route::post('pacientes', 'PacienteController@store')->name('pacientes');
 Route::post('paciente/delete/{id}', 'PacienteController@destroy');
 Route::get('paciente/edit/{id}', 'PacienteController@edit');
 Route::post('paciente/edit/{id}', 'PacienteController@update');
+Route::get('paciente/prontuario/{id}', 'PacienteController@prontuario');
 
 Route::get('users/lista', 'UserController@index');
 
@@ -42,6 +43,11 @@ Route::post('funcionarios', 'UserController@store')->name('funcionarios');
 Route::post('funcionario/delete/{id}', 'UserController@destroy');
 Route::get('funcionario/edit/{id}', 'UserController@edit');
 Route::post('funcionario/edit/{id}', 'UserController@update');
+
+Route::get('dente/lista', 'DenteController@index');
+
+Route::get('tratamento/lista', 'TratamentoController@index');
+Route::post('tratamentos', 'TratamentoController@store')->name('tratamentos');
 
 Route::get('/agenda', function(){
 	return view('agenda.agenda');

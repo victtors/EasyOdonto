@@ -18,4 +18,6 @@ class Consulta extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+
 }

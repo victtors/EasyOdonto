@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Paciente;
+use App\Tratamento;
 use Illuminate\Http\Request;
 use View;
 use Session;
@@ -78,6 +79,15 @@ class PacienteController extends Controller
         return View::make('paciente.editar')
             ->with('paciente', $paciente);
     
+    }
+
+    public function prontuario($id){
+
+        $tratamentos = Tratamento::with(['servico', 'dente', 'paciente', 'dentista'])->where('paciente_id', $id)->get();
+
+        return View::make('paciente.prontuario')
+            ->with('tratamentos', $tratamentos);
+
     }
 
     /**

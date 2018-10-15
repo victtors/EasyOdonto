@@ -15,13 +15,20 @@ class ServicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $servicos = Servico::all();
 
-        return View::make('servico.lista')
-            ->with('servicos', $servicos);
+        if($request->api){
+             $servicos = Servico::where('nome', 'like','%'.$request->s.'%')->get();
+            return ["data" => $servicos];
+        }
+        else{
+            return View::make('servico.lista')
+                ->with('servicos', $servicos);
+        }
+
     }
 
     /**

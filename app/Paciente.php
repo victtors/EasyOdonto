@@ -60,4 +60,9 @@ class Paciente extends Model
         return $this->hasMany('App\Consulta');
     }
 
+    public function tratamentos()
+    {
+        return $this->hasMany('App\Tratamento');
+    }
+
 }

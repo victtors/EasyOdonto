@@ -19,10 +19,6 @@ class CreateConsulta extends Migration
             $table->foreign('paciente_id')->references('id')->on('pacientes');
             $table->integer('dentista_id')->unsigned();
             $table->foreign('dentista_id')->references('id')->on('users');
-            $table->integer('dente_id')->unsigned()->nullable();
-            $table->foreign('dente_id')->references('id')->on('dentes')->onDelete('set null');
-            $table->integer('servico_id')->unsigned()->nullable();
-            $table->foreign('servico_id')->references('id')->on('servicos')->onDelete('set null');
             $table->datetime('data');
             $table->timestamps();
         });

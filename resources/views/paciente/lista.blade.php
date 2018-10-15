@@ -35,7 +35,8 @@
 	                            		<button class="btn btn-warning" onclick="return confirm('Tem certeza que deseja deletar o paciente {{$value->nome}}?')">Deletar</button>
 	                            	</form>
 	                                <!-- <a class="btn btn-small btn-success" href="{{ URL::to('paciente/' . $value->id) }}">Detalhes</a> -->
-	                				<a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href="{{ URL::to('paciente/edit/' . $value->id) }}">Editar</a>
+                                    <a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href="{{ URL::to('paciente/edit/' . $value->id) }}">Editar</a>
+	                				<a style="float: right;margin-right: 10px" class="btn btn-small btn-primary" href="{{ URL::to('paciente/prontuario/' . $value->id) }}">Prontuário</a>
 	                        	</td>
 	                        </tr>
                         @endforeach

@@ -14,6 +14,8 @@ class ConsultaController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->dentista_id != 'undefined')
+            return Consulta::with(['paciente', 'dentista'])->where('dentista_id', $request->dentista_id)->get();
         return Consulta::with(['paciente', 'dentista'])->get();
     }
 

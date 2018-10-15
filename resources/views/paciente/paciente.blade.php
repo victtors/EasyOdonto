@@ -4,8 +4,8 @@
     <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
     <div class="cm-flex">
         <h1>Paciente</h1> 
-        <form id="cm-search" action="index.html" method="get">
-            <input type="search" name="q" autocomplete="off" placeholder="Search...">
+        <form id="cm-search" action="{{url('paciente/lista')}}" method="get">
+            <input type="search" name="s" autocomplete="off" placeholder="Buscar paciente por nome ou cpf...">
         </form>
     </div>
     <div class="pull-right">
