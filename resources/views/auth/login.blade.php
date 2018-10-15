@@ -1,7 +1,7 @@
 <div class="cm-login">
 
   <div class="text-center" style="padding:90px 0 30px 0;background:#fff;border-bottom:1px solid #ddd">
-    <img src="{{asset('svg/logo-big.svg')}}" idth="300" height="45">
+    
   </div>
   
   <div class="col-sm-6 col-md-4 col-lg-3" style="margin:40px auto; float:none;">
