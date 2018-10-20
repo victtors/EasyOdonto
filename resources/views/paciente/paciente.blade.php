@@ -79,3 +79,4 @@
 	<div style="margin-top: 4%"></div>
 	@yield('sub-content')
 @endsection
+<script type="text/javascript" src=".././js/jquery.min.js"></script>   

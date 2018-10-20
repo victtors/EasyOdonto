@@ -29,6 +29,7 @@ Route::post('paciente/edit/{id}', 'PacienteController@update');
 Route::get('paciente/prontuario/{id}', 'PacienteController@prontuario');
 
 Route::get('users/lista', 'UserController@index');
+Route::post('users/registro', 'UserController@store');
 
 Route::get('servico/lista', 'ServicoController@index');
 Route::get('servico/cadastrar', 'ServicoController@create');
