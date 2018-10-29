@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Servico extends Model
 {
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'ativo'];
 
     public function tratamentos()
     {

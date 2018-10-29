@@ -20,11 +20,19 @@ class UserController extends Controller
     {
 
         if($request->api){
-            $users = User::where('nome', 'like','%'.$request->s.'%')->where('tipo', 'D')->get();
+            $users = User::where('ativo', 1)->where('tipo', 'D')
+            ->where(function($query) use ($request){
+                $query->where('nome', 'like','%'.$request->s.'%')
+                ->orWhere('cpf', 'like','%'.$request->s.'%');
+           })->get();
             return ["data" => $users];
         }
         else{  
-            $users = User::all();
+            $users = User::where(function($query) use ($request){
+                $query->where('nome', 'like','%'.$request->s.'%')
+                ->orWhere('cpf', 'like','%'.$request->s.'%');
+           })->get();
+
             return View::make('funcionario.lista')
             ->with('funcionarios', $users);
         }
@@ -95,6 +103,8 @@ class UserController extends Controller
     {
         $funcionario = User::find($id);
 
+        $request['password'] = Hash::make($request['password']);
+
         $funcionario->fill($request->all());
 
         $funcionario->save();
@@ -112,9 +122,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         $funcionario = User::find($id);
-        $funcionario->delete();
 
-        Session::flash('message', 'Funcionário deletado com sucesso');
+        $funcionario->ativo = $funcionario->ativo == 1 ? 0 : 1;
+
+        $funcionario->save();
+
+        $msg = $funcionario->ativo == 0 ? 'Funcionário desativado com sucesso!' :
+        'Funcionário reativado com sucesso!';
+
+        Session::flash('message', $msg);
         return Redirect::to('funcionario/lista');
     }
 }

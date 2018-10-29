@@ -1,6 +1,6 @@
 @extends('paciente.paciente')
 @section('sub-content')
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="pacienteListaController">
 	<div class="row cm-fix-height">
 		@if (Session::has('message'))
 			<div class="alert alert-info alert-dismissible show" role="alert">
@@ -28,14 +28,19 @@
 	                        <tr>
 	                            <th scope="row">{{$value->id}}</th>
 	                            <td>{{$value->nome}}</td>
-	                            <td>{{$value->cpf}}</td>
+	                            <td ng-bind-html="'{{$value->cpf}}' | cpf"></td>
 	                            <td>
-	                            	<form method="POST" class="pull-right" action="./delete/{{$value->id}}">
-	                            		@csrf
-	                            		<button class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o paciente {{$value->nome}}?')">Deletar</button>
-	                            	</form>
-	                                <!-- <a class="btn btn-small btn-success" href="{{ URL::to('paciente/' . $value->id) }}">Detalhes</a> -->
-                                    <a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href="{{ URL::to('paciente/edit/' . $value->id) }}">Editar</a>
+                                    @if(Auth::user()->tipo == 'ADM' or Auth::user()->tipo == 'A')
+    	                            	<form method="POST" class="pull-right" action="./delete/{{$value->id}}">
+    	                            		@csrf
+    	                            		<button class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o paciente {{$value->nome}}?')">Deletar</button>
+    	                            	</form>
+    	                                <!-- <a class="btn btn-small btn-success" href="{{ URL::to('paciente/' . $value->id) }}">Detalhes</a> -->
+                                        <a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href="{{ URL::to('paciente/edit/' . $value->id) }}">Editar</a>
+                                    @endif
+                                    @if(Auth::user()->tipo == 'D')
+                                        <a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href="{{ URL::to('paciente/edit/' . $value->id) }}">Visualizar</a>
+                                    @endif
 	                				<a style="float: right;margin-right: 10px" class="btn btn-small btn-primary" href="{{ URL::to('paciente/prontuario/' . $value->id) }}">Prontuário</a>
 	                        	</td>
 	                        </tr>

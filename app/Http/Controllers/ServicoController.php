@@ -18,13 +18,12 @@ class ServicoController extends Controller
     public function index(Request $request)
     {
 
-        $servicos = Servico::all();
-
         if($request->api){
-             $servicos = Servico::where('nome', 'like','%'.$request->s.'%')->get();
+            $servicos = Servico::where('ativo', 1)->where('nome', 'like','%'.$request->s.'%')->get();
             return ["data" => $servicos];
         }
         else{
+            $servicos = Servico::where('nome', 'like','%'.$request->s.'%')->get();
             return View::make('servico.lista')
                 ->with('servicos', $servicos);
         }
@@ -106,9 +105,15 @@ class ServicoController extends Controller
     public function destroy($id)
     {
         $servico = Servico::find($id);
-        $servico->delete();
 
-        Session::flash('message', 'Serviço deletado com sucesso');
+        $servico->ativo = $servico->ativo == 1 ? 0 : 1;
+
+        $servico->save();
+
+        $msg = $servico->ativo == 0 ? 'Serviço desativado com sucesso!' :
+        'Serviço reativado com sucesso!';
+
+        Session::flash('message', $msg);
         return Redirect::to('servico/lista');
     }
 }

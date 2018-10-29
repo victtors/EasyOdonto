@@ -40,7 +40,11 @@
 	                            <td>
 	                            	<form method="POST" class="pull-right" action="./delete/{{$value->id}}">
 	                            		@csrf
-	                            		<button class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o funcionário: {{$value->nome}}?')">Deletar</button>
+	                            		@if($value->ativo == 1)
+	                            			<button class="btn btn-danger" onclick="return confirm('Tem certeza que deseja desativar o funcionário: {{$value->nome}}?')">Desativar</button>
+	                            		@else
+	                            			<button class="btn btn-success" onclick="return confirm('Tem certeza que deseja reativar o funcionário: {{$value->nome}}?')">Reativar</button>
+	                            		@endif
 	                            	</form>
 	                                <!-- <a class="btn btn-small btn-success" href="{{ URL::to('paciente/' . $value->id) }}">Detalhes</a> -->
 	                				<a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href=" {{ URL::to('funcionario/edit/' . $value->id) }}">Editar</a>

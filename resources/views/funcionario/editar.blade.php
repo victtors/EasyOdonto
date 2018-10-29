@@ -36,6 +36,15 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="cpf" class="col-sm-1 control-label">Senha: </label>
+                                <div id="input-password" class="col-sm-10">
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                                <button type="button" id="btn-show-input-password" class="btn btn-warning">
+                                    Mudar senha
+                                </button>
+                            </div>
                             <button style="float: right" type="submit" class="btn btn-primary">Salvar</button>
                         </form>
                     </div>
@@ -45,3 +54,16 @@
         </div>
     </div>
 @endsection
+<script type="text/javascript" src="{{url('js/jquery.min.js')}}"></script>
+<script type="text/javascript">
+$(function(){
+
+    $("#input-password").hide();
+
+    $("#btn-show-input-password").click(() => {
+        $("#input-password").show("slow");
+        $("#btn-show-input-password").hide("slow");
+    })
+
+}); 
+</script>

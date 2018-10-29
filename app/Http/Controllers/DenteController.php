@@ -17,7 +17,7 @@ class DenteController extends Controller
         $dentes = Dente::all();
 
         if($request->api){
-             $dentes = Dente::where('nome', 'like','%'.$request->s.'%')->get();
+             $dentes = Dente::where('nome', 'like','%'.$request->s.'%')->orWhere('numero', 'like','%'.$request->s.'%')->get();
             return ["data" => $dentes];
         }
     }

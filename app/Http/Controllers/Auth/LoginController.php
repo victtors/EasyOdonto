@@ -30,6 +30,27 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/agenda';
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(\Illuminate\Http\Request $request)
+    {
+        return ['usuario' => $request->{$this->username()}, 'password' => $request->password, 'ativo' => 1];
+    }
+
     public function username()
     {
         return 'usuario';
@@ -44,13 +65,4 @@ class LoginController extends Controller
         return Redirect::to('/login');
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
 }

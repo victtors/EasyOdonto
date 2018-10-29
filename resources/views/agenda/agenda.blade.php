@@ -54,15 +54,15 @@
                           <form ng-submit="vm.salvarTratamento()">
                             <td>
                               <ui-select ng-model="vm.dente" theme="select2" style="min-width: 300px;" title="Selecione um dente" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }">
-                                  <ui-select-match placeholder="Busque dente por nome...">@{{$select.selected.nome}} - @{{$select.selected.id}}</ui-select-match>
-                                  <ui-select-choices refresh="vm.buscarDentistas($select.search)" repeat="dente in vm.dentes | propsFilter: {nome: $select.search}">
-                                    <div ng-bind-html="dente.nome | highlight: $select.search"></div>
+                                  <ui-select-match placeholder="Busque dente por nome...">@{{$select.selected.nome}} - @{{$select.selected.numero}}</ui-select-match>
+                                  <ui-select-choices refresh="vm.buscarDentes($select.search)" repeat="dente in vm.dentes | propsFilter: {nome: $select.search, numero: $select.search}">
+                                    <div ng-bind-html="dente.nome + ' - ' + dente.numero | highlight: $select.search"></div>
                                   </ui-select-choices>
                               </ui-select>
                             </td>
                             <td>
                               <ui-select ng-model="vm.servico" theme="select2" style="min-width: 300px;" title="Selecione um serviço" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }">
-                                  <ui-select-match placeholder="Busque o serviço por nome...">@{{$select.selected.nome}}</ui-select-match>
+                                  <ui-select-match placeholder="Busque o serviço por nome...">@{{$select.selected.nome}} - @{{$select.selected.numero}}</ui-select-match>
                                   <ui-select-choices refresh="vm.buscarServicos($select.search)" repeat="servico in vm.servicos | propsFilter: {nome: $select.search}">
                                     <div ng-bind-html="servico.nome | highlight: $select.search"></div>
                                   </ui-select-choices>
@@ -99,13 +99,13 @@
                           </small>
                         </ui-select-choices>
                       </ui-select>
-                      <p>Dentista</p>
+<!--                       <p>Dentista</p>
                         <ui-select ng-model="vm.dentista" theme="select2" style="min-width: 300px;" title="Selecione um dentista" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }">
                             <ui-select-match placeholder="Busque o dentista por nome...">@{{$select.selected.nome}}</ui-select-match>
                             <ui-select-choices refresh="vm.buscarDentistas($select.search)" repeat="dentista in vm.dentistas | propsFilter: {nome: $select.search}">
                               <div ng-bind-html="dentista.nome | highlight: $select.search"></div>
                             </ui-select-choices>
-                        </ui-select>
+                        </ui-select> -->
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" type="button" ng-click="vm.marcar()">Marcar</button>

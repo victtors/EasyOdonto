@@ -48,7 +48,8 @@
                                   },
                                   pacientes: () => {
                                     return []
-                                  }
+                                  },
+                                  dentista: () => vm.dentista
                                 }
                             })
 
@@ -268,17 +269,18 @@
 
     }
 
-    function modalCriarConsultaController($uibModalInstance, pacientes, evento, $http){
+    function modalCriarConsultaController($uibModalInstance, pacientes, evento, $http, dentista){
         const vm = this
 
         vm.marcar = marcar
         vm.fechar = fechar
         vm.data = evento
         vm.pacientes = pacientes
-        vm.buscarDentistas = buscarDentistas
         vm.buscarPacientes = buscarPacientes
-        vm.dentistas = []
-        console.log(pacientes)
+        vm.dentista = dentista
+        // vm.buscarDentistas = buscarDentistas
+        // vm.dentistas = []
+        console.log(dentista)
 
         function marcar(){
             let formData = {
@@ -302,22 +304,22 @@
                 )
         }
 
-        function buscarDentistas(busca){
-            $http.get("http://localhost:8000/users/lista?s="+busca+'&api=true&dentista=true')
-                .then(
-                    (response) => {
-                        console.log(response)
-                        vm.dentistas = response.data.data
-                    },
-                    (error) => {
-                        console.log(error)
-                    }
-                )
-        }
-
         function fechar(){
             $uibModalInstance.dismiss()
         }
+
+        // function buscarDentistas(busca){
+        //     $http.get("http://localhost:8000/users/lista?s="+busca+'&api=true&dentista=true')
+        //         .then(
+        //             (response) => {
+        //                 console.log(response)
+        //                 vm.dentistas = response.data.data
+        //             },
+        //             (error) => {
+        //                 console.log(error)
+        //             }
+        //         )
+        // }
 
     }
 
@@ -331,6 +333,8 @@
         vm.evento = evento
         vm.excluir = excluir
         vm.buscarDentistas = buscarDentistas
+        vm.buscarDentes = buscarDentes
+        vm.buscarServicos = buscarServicos
         vm.servicos = servicos
         vm.dentes = dentes
         vm.salvarTratamento = salvarTratamento

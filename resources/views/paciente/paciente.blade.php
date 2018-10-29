@@ -74,9 +74,15 @@
         </div>
     </div>
 </nav>
+<script type="text/javascript" src="{{url('js/angular.min.js')}}"></script>
+<script src="{{url('js/angular-sanitize.js')}}"></script>
+<script type="text/javascript" src="{{url('js/ngMask.min.js')}}"></script>
+<script type="text/javascript" src="{{url('js/paciente.js')}}"></script>
+<script type="text/javascript" src="{{url('js/ng-filters-br.min.js')}}"></script>
 @endsection
 @section('content')
-	<div style="margin-top: 4%"></div>
-	@yield('sub-content')
+    <div style="margin-top: 4%" ng-app="paciente">
+	   @yield('sub-content')
+    </div>
 @endsection
-<script type="text/javascript" src=".././js/jquery.min.js"></script>   
+<script type="text/javascript" src="{{url('js/jquery.min.js')}}"></script>   

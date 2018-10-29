@@ -1,6 +1,6 @@
 @extends('paciente.paciente')
 @section('sub-content')
-	<div class="container-fluid">
+	<div class="container-fluid" ng-controller="pacienteCadastroController">
 		<div class="row cm-fix-height">
 			<div class="col-sm-12">
 		        <div class="panel panel-default">
@@ -19,7 +19,9 @@
 			                    <div class="form-group">
 			                        <label for="cpf" class="col-sm-1 control-label">CPF: </label>
 			                        <div class="col-sm-10">
-			                            <input type="text" class="form-control" placeholder="CPF do paciente" name="cpf">
+			                            <input type="text" class="form-control" placeholder="CPF do paciente" ng-model="vm.cpf" name="cpf"
+			                            mask="999.999.999-99"
+			                            />
 			                        </div>
 			                    </div>
 
