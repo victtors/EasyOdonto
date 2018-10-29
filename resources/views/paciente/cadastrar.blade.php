@@ -6,29 +6,32 @@
 		        <div class="panel panel-default">
 		            <div class="panel-heading">Cadastrar Paciente</div>
 		            <div class="panel-body">
-		                <form class="form-horizontal" method="POST" action="{{ route('pacientes') }}">
+		                <form name="pacienteForm" class="form-horizontal" method="POST" action="{{ route('pacientes') }}">
 		                	@csrf
 		                	<div id="passo1">
-	                    		<div class="form-group">
+	                    		<div class="form-group" ng-class="{ 'has-error' : pacienteForm.nome.$invalid && !pacienteForm.nome.$pristine }">
 			                        <label for="nome" class="col-sm-1 control-label">Nome: </label>
 			                        <div class="col-sm-10">
-			                            <input type="text" class="form-control" placeholder="Nome do paciente" name="nome">
+			                            <input type="text" class="form-control" placeholder="Nome do paciente" name="nome" ng-model="paciente.nome" required>
+			                            <p ng-show="pacienterForm.nome.$invalid && !pacienteForm.nome.$pristine" class="help-block">O campo nome é obrigatório!</p>
 			                        </div>
 			                    </div>
 
-			                    <div class="form-group">
+			                    <div class="form-group" ng-class="{ 'has-error' : pacienteForm.cpf.$invalid && !pacienteForm.cpf.$pristine }">
 			                        <label for="cpf" class="col-sm-1 control-label">CPF: </label>
 			                        <div class="col-sm-10">
 			                            <input type="text" class="form-control" placeholder="CPF do paciente" ng-model="vm.cpf" name="cpf"
-			                            mask="999.999.999-99"
+			                            mask="999.999.999-99" required 
 			                            />
+			                            <p ng-show="pacienterForm.cpf.$invalid && !pacienteForm.cpf.$pristine" class="help-block">O campo cpf é obrigatório!</p>
 			                        </div>
 			                    </div>
 
-								<div class="form-group">
+								<div class="form-group" ng-class="{ 'has-error' : pacienteForm.data_nascimento.$invalid && !pacienteForm.data_nascimento.$pristine }">
 			                        <label for="data_nascimento" class="col-sm-1 control-label">Data de Nascimento</label>
 			                        <div class="col-sm-3">
 			                            <input type="date" class="form-control" name="data_nascimento">
+			                            <p ng-show="pacienterForm.data_nascimento.$invalid && !pacienteForm.data_nascimento.$pristine" class="help-block">O campo data de nascimento é obrigatório!</p>
 			                        </div>
 			                    </div>
 
