@@ -67,7 +67,8 @@ class RegisterController extends Controller
             'usuario' => $data['usuario'],
             'password' => Hash::make($data['password']),
             'cpf' => $data['cpf'],
-            'tipo' => $data['tipo']
+            'tipo' => $data['tipo'],
+            'ativo' => 1
         ]);
 
         return ["mensagem" => "Usuário xD"];

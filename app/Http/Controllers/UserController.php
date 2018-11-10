@@ -61,7 +61,8 @@ class UserController extends Controller
             'usuario' => $request['usuario'],
             'password' => Hash::make($request['password']),
             'cpf' => $request['cpf'],
-            'tipo' => $request['tipo']
+            'tipo' => $request['tipo'],
+            'ativo' => 1
         ]);
         Session::flash('message', 'Funcionário criado com sucesso!');
         return Redirect::to('funcionario/lista');
