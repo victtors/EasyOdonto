@@ -1,8 +1,16 @@
 @extends('funcionario.funcionario')
 @section('sub-content')
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="funcionarioCadastroController">
     <div class="row cm-fix-height">
         <div class="col-sm-offset-2 col-sm-8">
+            @if (Session::has('message'))
+                <div class="alert alert-danger alert-dismissible show" role="alert">
+                    {{ Session::get('message') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="panel panel-default">
                 <div class="panel-heading">Cadastrar um novo funcionário</div>
                 <div class="panel-body">
@@ -28,7 +36,7 @@
                             <label for="cpf" class="col-md-4 col-form-label text-md-right">{{ __('CPF') }}</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="text" class="form-control" name="cpf">
+                                <input id="cpf" type="text" class="form-control" name="cpf"  mask="999.999.999-99" ng-model="vm.cpf">
                             </div>
                         </div>
 
@@ -49,6 +57,14 @@
 
                             <div class="col-md-6">
                                 <input id="password" name="password" type="password" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="confirm_password" class="col-md-4 col-form-label text-md-right">{{ __('Confirmação de Senha') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="confirm_password" name="password_confirmation" type="password" class="form-control">
                             </div>
                         </div>
 

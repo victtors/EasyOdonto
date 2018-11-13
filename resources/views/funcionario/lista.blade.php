@@ -1,6 +1,6 @@
 @extends("funcionario.funcionario")
 @section("sub-content")
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="funcionarioListaController">
 	<div class="row cm-fix-height">
 		@if (Session::has('message'))
 			<div class="alert alert-info alert-dismissible show" role="alert">
@@ -30,7 +30,7 @@
 	                        <tr>
 	                            <th scope="row">{{$value->id}}</th>
 	                            <td>{{$value->nome}}</td>
-	                            <td>{{$value->cpf}}</td>
+	                            <td ng-bind-html="'{{$value->cpf}}' | cpf"></td>
 	                            @if($value->tipo == 'ADM')
 	                            	<td>Administrador</td>
 	                            @else

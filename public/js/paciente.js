@@ -9,7 +9,6 @@
     	init();
 
     	function init(){
-
     	}
 
     }
@@ -20,7 +19,7 @@
         init();
 
         function init(){
-
+            console.log("Controller lista paciente!");
         }
 
     }

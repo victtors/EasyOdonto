@@ -8,6 +8,7 @@ use View;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -56,6 +57,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator =  Validator::make($request->all(),[
+            'password' => 'required|string|confirmed',
+        ]);
+        
+        if($validator->fails()){
+            Session::flash('message', 'Senha e confirmação de senha não batem!');
+            return Redirect::to('funcionario/cadastrar');
+        }
+
         $funcionario = User::create([
             'nome' => $request['nome'],
             'usuario' => $request['usuario'],
@@ -101,7 +112,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+
+        $validator =  Validator::make($request->all(),[
+            'password' => 'required|string|confirmed',
+        ]);
+        
+        if($validator->fails()){
+            Session::flash('message', 'Senha e confirmação de senha não batem!');
+            return Redirect::to('funcionario/edit/'.$id);
+        }
+
         $funcionario = User::find($id);
 
         $request['password'] = Hash::make($request['password']);

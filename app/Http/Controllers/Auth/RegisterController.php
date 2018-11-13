@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Session;
+use Redirect;
 
 class RegisterController extends Controller
 {
@@ -51,6 +53,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -77,7 +80,15 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
+
+        $validator =  Validator::make($request->all(),[
+            'password' => 'required|string|confirmed',
+        ]);
+        
+        if($validator->fails()){
+            Session::flash('message', 'Senha e confirmação de senha não batem!');
+            return Redirect::to('funcionario/cadastrar');
+        }
 
         event(new Registered($user = $this->create($request->all())));
 
