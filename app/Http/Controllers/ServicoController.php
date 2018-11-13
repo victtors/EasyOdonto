@@ -48,7 +48,10 @@ class ServicoController extends Controller
      */
     public function store(Request $request)
     {
-        $servico = Servico::create($request->all());
+        $servico = Servico::create([
+            'nome' => $request['nome'],
+            'ativo' => 1
+        ]);
         Session::flash('message', 'Serviço criado com sucesso!');
         return Redirect::to('servico/lista');
     }

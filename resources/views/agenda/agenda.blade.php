@@ -21,7 +21,7 @@
             @endif
             <div ui-calendar="vm.uiConfig.calendar" class="span8 calendar" ng-model="vm.eventSources" ng-if="(vm.user.tipo == 'D' && vm.renderCalendar) || (vm.renderCalendar && vm.dentista)"></div>
             @if(Auth::user()->tipo != 'D')
-            <h2 ng-if="!vm.dentista">Por favor, selecione um dentista acima :)</h2>
+            <h2 ng-if="!vm.dentista"></h2>
             @endif
             <!-- Select de dentistas -->
             <script type="text/ng-template" id="modalEvento.html">
