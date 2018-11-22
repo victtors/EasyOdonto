@@ -78,8 +78,6 @@ class ConsultaController extends Controller
 
         $consulta->paciente_id = $request->paciente_id;
         $consulta->dentista_id = $request->dentista_id;
-        $consulta->dente_id = $request->dente_id;
-        $consulta->servico_id = $request->tipo_servico_id;
         $consulta->data = $request->data;
 
         $consulta->save();

@@ -9,6 +9,11 @@
               <th>Dente</th>
               <th>Tratamento</th>
               <th>Dentista</th>
+              <th>Data</th>
+              <th>
+                Status
+                <span><a href="javascript:window.print();" class="pull-right fa fa-2x fa-print" style="color: gray"></a></span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -17,6 +22,8 @@
                   <td>{{$t->dente->nome}} - {{$t->dente->numero}}</td>
                   <td>{{$t->servico->nome}}</td>
                   <td>{{$t->dentista->nome}}</td>
+                  <td>{{$t->updated_at}}</td>
+                  <td>Concluído</td>
                 </tr>
             @endforeach
           </tbody>

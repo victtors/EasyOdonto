@@ -37,21 +37,25 @@
                     <table class="table table-bordered table-striped">
                       <thead>
                         <tr>
+                          <th>Dentista</th>
                           <th>Dente</th>
                           <th>Tratamento</th>
-                          <th>Dentista</th>
+                          <th>Concluído</th>
+                          <th>#</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr ng-repeat="t in vm.tratamentos">
+                          <td>@{{t.dentista.nome}}</td>
                           <td>@{{t.dente.nome}} - @{{t.dente.numero}}</td>
                           <td>@{{t.servico.nome}}</td>
-                          <td>@{{t.dentista.nome}}</td>
+                          <td>@{{t.concluido}}</td>
                         </tr>
                       </tbody>
                       <tfoot>
                         <tr>
                           <form ng-submit="vm.salvarTratamento()">
+                            <td></td>
                             <td>
                               <ui-select ng-model="vm.dente" theme="select2" style="min-width: 300px;" title="Selecione um dente" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }">
                                   <ui-select-match placeholder="Busque dente por nome...">@{{$select.selected.nome}} - @{{$select.selected.numero}}</ui-select-match>
@@ -67,6 +71,9 @@
                                     <div ng-bind-html="servico.nome | highlight: $select.search"></div>
                                   </ui-select-choices>
                               </ui-select>
+                            </td>
+                            <td>
+                              <input type="checkbox" name="concluido">
                             </td>
                             <td>
                               <button type="submit" ng-click="vm.salvarTratamento()" class="btn btn-success">Feito</button>

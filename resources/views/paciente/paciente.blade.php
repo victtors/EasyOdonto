@@ -12,7 +12,6 @@
         <div id="cm-search-btn" class="btn btn-primary md-search-white" data-toggle="cm-search"></div>
     </div>
     <div class="dropdown pull-right">
-        <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">23</span> </button>
         <div class="popover cm-popover bottom">
             <div class="arrow"></div>
             <div class="popover-content">

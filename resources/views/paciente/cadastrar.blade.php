@@ -65,9 +65,10 @@
 			                    </div>
 
 								<div class="form-group">
-			                        <label for="nacionalidade" class="col-sm-1 control-label">País: </label>
+			                        <label for="nacionalidade" class="col-sm-1 control-label">Nacionalidade: </label>
 			                        <div class="col-sm-10">
-			                            <input type="text" class="form-control" placeholder="'Ex: Brasil'" name="nacionalidade">
+										<input type="radio" value="brasileiro" name="nacionalidade" checked> Brasileiro
+										<input type="radio" value="estrangeiro" name="nacionalidade"> Estrangeiro
 			                        </div>
 			                    </div>
 
@@ -81,7 +82,7 @@
 								<div class="form-group">
 			                        <label for="contato" class="col-sm-1 control-label">Contato: </label>
 			                        <div class="col-sm-10">
-			                            <input type="text" class="form-control" placeholder="'Ex: 6899999-0000'" name="contato">
+			                            <input type="text" class="form-control" mask="(99)99999-9999" ng-model="telefone" placeholder="'Ex: 6899999-0000'" name="contato">
 			                        </div>
 			                    </div>
 
@@ -329,28 +330,54 @@
 								<div class="form-group">
 			                        <label for="escovarOsDentes" class="col-sm-3">Quantas vezes escova os dentes ao dia?</label>
 			                        <div class="col-sm-9">
-										<input type="text" class="form-control" placeholder="Quantas vezes?" name="escovarOsDentes">
+										<select name="escovarOsDentes" class="form-control">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="mais3">Mais de 3</option>
+										</select>
 			                    	</div>
 								</div>
 
 								<div class="form-group">
 			                        <label for="fioDental" class="col-sm-3">Quantas vezes usa fio dental ao dia?</label>
 			                        <div class="col-sm-9">
-										<input type="text" class="form-control" placeholder="Quantas vezes?" name="fioDental">
+										<select name="fioDental" class="form-control">
+											<option value="0">Nenhuma</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="mais3">Mais de 3</option>
+										</select>
 			                    	</div>
 								</div>
 
 								<div class="form-group">
-			                        <label for="vaiAoDentista" class="col-sm-3">Com que frequência vai ao dentista?</label>
+			                        <label for="vaiAoDentista" class="col-sm-3">Com que frequência vai ao dentista (ao ano) ?</label>
 			                        <div class="col-sm-9">
-										<input type="text" class="form-control" placeholder="'Ex: Uma vez por mês'" name="vaiAoDentista">
+										<select name="vaiAoDentista" class="form-control">
+											<option value="0">Nenhuma</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="mais3">Mais de 3</option>
+										</select>
 			                    	</div>
 								</div>
 
 								<div class="form-group">
 			                        <label for="tratamentoOdontológico" class="col-sm-3">Quando foi seu último tratamento?</label>
 			                        <div class="col-sm-9">
-										<input type="text" class="form-control" placeholder="'Ex: 2 meses atrás'" name="tratamentoOdontológico">
+										<select name="tratamentoOdontológico" class="form-control">
+											<option value="0">Sem tratamento</option>
+											<option value="1">1 mês atrás</option>
+											<option value="2">2 meses atrás</option>
+											<option value="3">3 meses atrás</option>
+											<option value="4">4 meses atrás</option>
+											<option value="5">5 meses atrás</option>
+											<option value="6">6 meses atrás</option>
+											<option value="mais6">Mais de 6 meses atrás</option>
+										</select>
 			                    	</div>
 								</div>
 								<button style="float: left" type="button" class="btn btn-danger" id="btn-voltar-passo3">Voltar</button>

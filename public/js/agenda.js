@@ -98,8 +98,6 @@
                             let consulta = {
                                 paciente_id: evt.paciente_id,
                                 dentista_id: evt.dentista_id,
-                                tipo_servico_id: evt.tipo_servico_id,
-                                dente_id: evt.dente_id,
                                 data: new Date(data.getFullYear(), data.getMonth(), data.getDate(), data.getHours() - 5, 0).toMysqlFormat(),
                             }
                             $http.put("http://localhost:8000/api/consulta/"+evt.id, consulta)
@@ -226,8 +224,6 @@
                                 end: end,
                                 paciente_id: e.paciente_id,
                                 dentista_id: e.dentista_id,
-                                tipo_servico_id: e.tipo_servico_id,
-                                dente_id: e.dente_id,
                                 paciente: e.paciente,
                                 dentista: e.dentista,
                                 allDay: false,

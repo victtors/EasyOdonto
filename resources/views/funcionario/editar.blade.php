@@ -30,8 +30,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="cpf" class="col-sm-1 control-label">CPF: </label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="CPF do funcionário" name="cpf" value="{{$funcionario->cpf}}" mask="999.999.999-99" ng-model="vm.cpf">
+                                <div class="col-sm-10" ng-init="vm.cpf = '{{$funcionario->cpf}}'">
+                                    <input type="text" class="form-control" placeholder="CPF do funcionário" name="cpf" mask="999.999.999-99" ng-model="vm.cpf" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
