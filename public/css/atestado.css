@@ -1,0 +1,43 @@
+.atestado {
+    display: flex;
+    flex-direction: column;
+}
+
+.imagem {
+    align-self: center;
+}
+
+.titulo {
+    margin-top: 6rem;
+    align-self: center;
+    color: #3498db;
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8rem;
+}
+
+.descricao {
+    align-self: center;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 12rem;
+}
+
+.cidade-data {
+    align-self: flex-start;
+    font-size: 20px;
+    margin-bottom: 8rem;
+}
+
+.info-dentista {
+    text-align: center;
+    align-self: center;
+    font-size: 20px;
+}
+
+@media print 
+{
+  @page { margin: 0; }
+  body  { margin: 1.6cm; }
+}

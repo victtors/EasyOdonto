@@ -34,16 +34,31 @@
                                     <input type="text" class="form-control" placeholder="CPF do funcionário" name="cpf" mask="999.999.999-99" ng-model="vm.cpf" disabled>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" ng-init="tipo = '{{$funcionario->tipo == 'A' ? '1' : $funcionario->tipo == 'D' ? '2' : '3'}}'">
                                 <label for="tipo" class="col-sm-1 control-label">Tipo: </label>
                                 <div class="col-sm-10">
-                                    <select id="tipo" class="form-control" name="tipo">
+                                    <select id="tipo" class="form-control" ng-model="tipo" name="tipo">
                                         <option value="1" {{$funcionario->tipo == 'A'? 'selected': ''}}>Atendente</option>
                                         <option value="2" {{$funcionario->tipo == 'D'? 'selected': ''}}>Dentista</option>
                                         <option value="3" {{$funcionario->tipo == 'ADM'? 'selected': ''}}>Administrador</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <div ng-show="tipo == '2'" class="form-group">
+                                <label for="cargo" class="col-sm-1 control-label">Cargo: </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Cargo" name="cargo" value="{{$funcionario->cargo}}">
+                                </div>
+                            </div>
+
+                            <div ng-show="tipo == '2'" class="form-group">
+                                <label for="cro" class="col-sm-1 control-label">CRO: </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="CRO" name="cro" value="{{$funcionario->cro}}">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="cpf" class="col-sm-1 control-label">Senha: </label>
                                 <div id="input-password" class="col-sm-10">

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use View;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
@@ -87,6 +88,20 @@ class PacienteController extends Controller
 
         return View::make('paciente.prontuario')
             ->with('tratamentos', $tratamentos);
+
+    }
+
+    public function atestado($id, Request $request){
+
+        $paciente = Paciente::find($id);
+
+        $dentista = Auth::user();
+
+        $dias = $request['dias'];
+
+        return View::make('paciente.atestado')
+            ->with('data', ['paciente' => $paciente, 'dentista' => $dentista, 
+                'dias' => $dias]);
 
     }
 

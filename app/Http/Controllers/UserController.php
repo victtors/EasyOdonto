@@ -73,7 +73,9 @@ class UserController extends Controller
             'password' => Hash::make($request['password']),
             'cpf' => $request['cpf'],
             'tipo' => $request['tipo'],
-            'ativo' => '1'
+            'ativo' => '1',
+            'cargo' => $request['cargo'],
+            'cro' => $request['cro']
         ]);
         Session::flash('message', 'Funcionário criado com sucesso!');
         return Redirect::to('funcionario/lista');
@@ -114,18 +116,24 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {   
 
-        $validator =  Validator::make($request->all(),[
-            'password' => 'required|string|confirmed',
-        ]);
+        if($request['password'] != ''){
+
+            $validator =  Validator::make($request->all(),[
+                'password' => 'required|string|confirmed',
+            ]);
         
-        if($validator->fails()){
-            Session::flash('message', 'Senha e confirmação de senha não batem!');
-            return Redirect::to('funcionario/edit/'.$id);
+            if($validator->fails()){
+                Session::flash('message', 'Senha e confirmação de senha não batem!');
+                return Redirect::to('funcionario/edit/'.$id);
+            }
+
+            $request['password'] = Hash::make($request['password']);
+
+        }else {
+            unset($request['password']);
         }
 
         $funcionario = User::find($id);
-
-        $request['password'] = Hash::make($request['password']);
 
         $funcionario->fill($request->all());
 

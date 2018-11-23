@@ -1,5 +1,15 @@
 @extends('paciente.paciente')
 @section('sub-content')
+<script type="text/javascript">
+
+        function gerarAtestado(elm){
+            const num_dia = prompt("Digite a quantidade de dias do atestado");
+            const url = elm.id + '?dias=' + num_dia;
+            if(num_dia)
+                window.open(url, '_blank');
+        }
+
+</script>
 <div class="container-fluid" ng-controller="pacienteListaController">
 	<div class="row cm-fix-height">
 		@if (Session::has('message'))
@@ -40,8 +50,9 @@
                                     @endif
                                     @if(Auth::user()->tipo == 'D')
                                         <a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href="{{ URL::to('paciente/edit/' . $value->id) }}">Visualizar</a>
+                                        <a id="{{ URL::to('paciente/atestado/' . $value->id) }}" style="float: right;margin-right: 10px" class="btn btn-small btn-warning" onclick="gerarAtestado(this)">Gerar Atestado</a>
                                     @endif
-	                				<a style="float: right;margin-right: 10px" class="btn btn-small btn-primary" href="{{ URL::to('paciente/prontuario/' . $value->id) }}">Prontuário</a>
+	                				<a href="{{ URL::to('paciente/prontuario/' . $value->id) }}" style="float: right;margin-right: 10px" class="btn btn-small btn-primary">Prontuário</a>
 	                        	</td>
 	                        </tr>
                         @endforeach

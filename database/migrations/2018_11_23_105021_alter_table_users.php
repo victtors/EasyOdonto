@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateColumnAtivoServicos extends Migration
+class AlterTableUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateColumnAtivoServicos extends Migration
      */
     public function up()
     {
-        Schema::table('servicos', function (Blueprint $table) {
-            $table->tinyInteger('ativo');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('cargo')->nullable();
+            $table->string('cro')->nullable();
         });
     }
 
@@ -25,8 +26,8 @@ class CreateColumnAtivoServicos extends Migration
      */
     public function down()
     {
-        Schema::table('servicos', function (Blueprint $table) {
-            $table->dropColumn('ativo');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumns(['cargo', 'cro']);
         });
     }
 }

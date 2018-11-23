@@ -40,15 +40,31 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row" ng-init="tipo = '1'">
                             <label for="tipo" class="col-md-4 col-form-label text-md-right">{{ __('Tipo') }}</label>
 
                             <div class="col-md-6">
-                                <select id="tipo" class="form-control" name="tipo">
+                                <select id="tipo" class="form-control" name="tipo" ng-model="tipo">
                                     <option value="1">Atendente</option>
                                     <option value="2">Dentista</option>
                                     <option value="3">Administrador</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div ng-show="tipo == '2'" class="form-group row">
+                            <label for="cargo" class="col-md-4 col-form-label text-md-right">{{ __('Cargo') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cargo" type="text" class="form-control" name="cargo">
+                            </div>
+                        </div>
+
+                        <div ng-show="tipo == '2'" class="form-group row">
+                            <label for="cro" class="col-md-4 col-form-label text-md-right">{{ __('CRO') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cro" type="text" class="form-control" name="cro">
                             </div>
                         </div>
 

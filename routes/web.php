@@ -27,6 +27,7 @@ Route::post('paciente/delete/{id}', 'PacienteController@destroy');
 Route::get('paciente/edit/{id}', 'PacienteController@edit');
 Route::post('paciente/edit/{id}', 'PacienteController@update');
 Route::get('paciente/prontuario/{id}', 'PacienteController@prontuario');
+Route::get('paciente/atestado/{id}', 'PacienteController@atestado');
 
 Route::get('users/lista', 'UserController@index');
 Route::post('users/registro', 'UserController@store');
