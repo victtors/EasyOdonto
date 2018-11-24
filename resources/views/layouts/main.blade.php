@@ -27,7 +27,8 @@
 	                    @endif
 	                   	@if(Auth::user()->tipo == 'ADM')
 	                    	<li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class="sf-file-text">Serviço</a></li>
-	                    	<li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class=" sf-sign-add">Funcionário</a></li>
+	                    	<li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class="sf-sign-add">Funcionário</a></li>
+	                    	<li class="@active('relatorio/?.*')"><a href="{{url('relatorio/lista')}}" class="sf-book">Relatório</a></li>
 	                    @endif
 	                </ul>
 	            </div>

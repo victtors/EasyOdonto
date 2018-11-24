@@ -51,6 +51,8 @@ Route::get('dente/lista', 'DenteController@index');
 Route::get('tratamento/lista', 'TratamentoController@index');
 Route::post('tratamentos', 'TratamentoController@store')->name('tratamentos');
 
+Route::get('relatorio/lista', 'RelatorioController@index');
+
 Route::get('/agenda', function(){
 	return view('agenda.agenda');
 });
