@@ -53,7 +53,7 @@
                         </div>
 
                         <div ng-show="tipo == '2'" class="form-group row">
-                            <label for="cargo" class="col-md-4 col-form-label text-md-right">{{ __('Cargo') }}</label>
+                            <label for="cargo" class="col-md-4 col-form-label text-md-right">{{ __('Especialidade') }}</label>
 
                             <div class="col-md-6">
                                 <input id="cargo" type="text" class="form-control" name="cargo">

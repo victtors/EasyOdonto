@@ -51,7 +51,7 @@ class PacienteController extends Controller
     public function store(Request $request)
     {
         $paciente = Paciente::create($request->all());
-        Session::flash('message', 'Paciente criado com sucesso!');
+        Session::flash('message', 'Paciente cadastrado com sucesso!');
         return Redirect::to('paciente/lista');
     }
 

@@ -46,7 +46,7 @@
                             </div>
 
                             <div ng-show="tipo == '2'" class="form-group">
-                                <label for="cargo" class="col-sm-1 control-label">Cargo: </label>
+                                <label for="cargo" class="col-sm-1 control-label">Especialidade: </label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" placeholder="Cargo" name="cargo" value="{{$funcionario->cargo}}">
                                 </div>

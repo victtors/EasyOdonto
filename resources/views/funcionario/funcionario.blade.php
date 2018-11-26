@@ -3,7 +3,7 @@
 <nav class="cm-navbar cm-navbar-primary">
     <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
     <div class="cm-flex">
-        <h1>Funcionários</h1> 
+        <h1>Funcionários</h1>
         <form id="cm-search" action="{{url('funcionario/lista')}}" method="get">
             <input type="search" name="s" autocomplete="off" placeholder="Buscar funcionário por nome ou cpf...">
         </form>

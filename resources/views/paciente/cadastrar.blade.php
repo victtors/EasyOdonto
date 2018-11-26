@@ -331,6 +331,7 @@
 			                        <label for="escovarOsDentes" class="col-sm-3">Quantas vezes escova os dentes ao dia?</label>
 			                        <div class="col-sm-9">
 										<select name="escovarOsDentes" class="form-control">
+											<option value="0">Nenhuma</option>
 											<option value="1">1</option>
 											<option value="2">2</option>
 											<option value="3">3</option>
