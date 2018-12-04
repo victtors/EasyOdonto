@@ -22,13 +22,13 @@
 	            <div id="cm-menu-scroller">
 	                <ul class="cm-menu-items">
 	                    <li class="@active('agenda/?.*')"><a href="{{url('agenda')}}" class="sf-book">Agenda</a></li>
-	                    @if(Auth::user()->tipo == 'ADM' or Auth::user()->tipo == 'A' or Auth::user()->tipo == 'D')
+	                    @if(Auth::user()->tipo == 'A' or Auth::user()->tipo == 'D')
 	                    	<li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-profile">Paciente</a></li>
 	                    @endif
 	                   	@if(Auth::user()->tipo == 'ADM')
-	                    	<li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class="sf-file-text">Serviço</a></li>
-	                    	<li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class="sf-sign-add">Funcionário</a></li>
-	                    	<li class="@active('relatorio/?.*')"><a href="{{url('relatorio/lista')}}" class="sf-book">Relatório</a></li>
+	                    	<li class="@active('servico/?.*')"><a href="{{url('servico/lista')}}" class=" sf-folder-document">Serviço</a></li>
+	                    	<li class="@active('funcionario/?.*')"><a href="{{url('funcionario/lista')}}" class=" sf-user-male">Funcionário</a></li>
+	                    	<li class="@active('relatorio/?.*')"><a href="{{url('relatorio/lista')}}" class=" sf-notepad">Relatório</a></li>
 	                    @endif
 	                </ul>
 	            </div>

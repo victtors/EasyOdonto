@@ -29,9 +29,10 @@
                   <h3 class="modal-title" id="modal-title">Evento</h3>
                 </div>
                 <div class="modal-body" id="modal-body">
-                    <p><b>Nome:</b> @{{vm.evento.title}}</p>
+                    <p><b>Nome do Paciente:</b> @{{vm.evento.title}}</p>
                     <p><b>CPF:</b> @{{vm.evento.paciente.cpf}}</p>
-                    <p><b>Dentista:</b>@{{vm.evento.dentista.nome}}</p>
+                    <p><b>Contato:</b> @{{vm.evento.paciente.contato}}</p>
+                    <p><b>Dentista:</b> @{{vm.evento.dentista.nome}}</p>
                     @if(Auth::user()->tipo == 'D')
                     <hr />
                     <table class="table table-bordered table-striped">

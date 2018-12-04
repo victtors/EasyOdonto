@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Out-2018 às 15:54
--- Versão do servidor: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: 30-Nov-2018 às 16:20
+-- Versão do servidor: 10.1.36-MariaDB
+-- versão do PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,8 +32,6 @@ CREATE TABLE `consultas` (
   `id` int(10) UNSIGNED NOT NULL,
   `paciente_id` int(10) UNSIGNED NOT NULL,
   `dentista_id` int(10) UNSIGNED NOT NULL,
-  `dente_id` int(10) UNSIGNED DEFAULT NULL,
-  `servico_id` int(10) UNSIGNED DEFAULT NULL,
   `data` datetime NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -43,10 +41,9 @@ CREATE TABLE `consultas` (
 -- Extraindo dados da tabela `consultas`
 --
 
-INSERT INTO `consultas` (`id`, `paciente_id`, `dentista_id`, `dente_id`, `servico_id`, `data`, `created_at`, `updated_at`) VALUES
-(22, 4, 12, NULL, NULL, '2018-10-14 09:00:00', '2018-10-20 20:14:24', '2018-10-20 20:44:27'),
-(24, 6, 12, NULL, NULL, '2018-10-21 08:00:00', '2018-10-26 03:22:17', '2018-10-26 03:22:17'),
-(26, 4, 12, NULL, NULL, '2018-10-29 05:00:00', '2018-10-29 03:46:01', '2018-10-29 03:46:01');
+INSERT INTO `consultas` (`id`, `paciente_id`, `dentista_id`, `data`, `created_at`, `updated_at`) VALUES
+(5, 7, 3, '2018-11-26 10:00:00', '2018-11-27 00:49:45', '2018-11-27 00:49:45'),
+(6, 3, 17, '2018-11-26 10:00:00', '2018-11-27 00:49:59', '2018-11-27 00:50:16');
 
 -- --------------------------------------------------------
 
@@ -57,7 +54,7 @@ INSERT INTO `consultas` (`id`, `paciente_id`, `dentista_id`, `dente_id`, `servic
 CREATE TABLE `dentes` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero` int(11) DEFAULT NULL,
+  `numero` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -70,7 +67,7 @@ INSERT INTO `dentes` (`id`, `nome`, `numero`, `created_at`, `updated_at`) VALUES
 (1, 'Incisivo central superior', 11, NULL, NULL),
 (2, 'Incisivo central superior', 21, NULL, NULL),
 (3, 'Incisivo lateral superior', 12, NULL, NULL),
-(4, 'Incisivo lateral superior\r\n', 22, NULL, NULL),
+(4, 'Incisivo lateral superior', 22, NULL, NULL),
 (5, 'Canino superior', 13, NULL, NULL),
 (6, 'Canino superior', 23, NULL, NULL),
 (7, 'Pré molar superior', 14, NULL, NULL),
@@ -91,16 +88,7 @@ INSERT INTO `dentes` (`id`, `nome`, `numero`, `created_at`, `updated_at`) VALUES
 (22, 'Canino inferior', 43, NULL, NULL),
 (23, 'Pré molar inferior', 34, NULL, NULL),
 (24, 'Pré molar inferior', 35, NULL, NULL),
-(25, 'Pré molar inferior', 44, NULL, NULL),
-(26, 'Pré molar inferior', 45, NULL, NULL),
-(27, 'Molar inferior', 36, NULL, NULL),
-(28, 'Molar inferior', 37, NULL, NULL),
-(29, 'Molar inferior', 37, NULL, NULL),
-(30, 'Molar inferior', 38, NULL, NULL),
-(31, 'Molar inferior', 46, NULL, NULL),
-(32, 'Molar inferior', 47, NULL, NULL),
-(33, 'Molar inferior', 48, NULL, NULL),
-(35, 'Todos', 0, NULL, NULL);
+(25, 'Pré molar inferior', 44, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -124,7 +112,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2018_09_30_211235_create_dentes_table', 1),
 (4, '2018_09_30_225250_create_servicos_table', 1),
 (5, '2018_09_30_210114_create_consulta', 2),
-(6, '2018_10_15_013346_create_tratamentos_table', 3);
+(6, '2018_10_15_013346_create_tratamentos_table', 2),
+(7, '2018_10_29_015346_create_column_ativo_funcionarios', 2),
+(8, '2018_10_29_015919_create_column_ativo_servicos', 2),
+(9, '2018_11_23_105021_alter_table_users', 3);
 
 -- --------------------------------------------------------
 
@@ -186,9 +177,11 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`id`, `nome`, `cpf`, `data_nascimento`, `genero`, `endereco`, `cidade`, `estado`, `nacionalidade`, `profissao`, `contato`, `email`, `tratamentoMedico`, `tomandoRemedio`, `estaGravida`, `suspendeuRemedio`, `alergia`, `sensivelMetalouLatex`, `diabetico`, `sujeitoAInfeccoes`, `epilepsia`, `desmaiaTonturas`, `pressaoIrregular`, `formigamentoExtremidades`, `sangraMuito`, `fuma`, `foiOperado`, `doencaGrave`, `problemasCardiacos`, `respiraBemPeloNariz`, `dificuldadeAbrirBoca`, `doresNaFace`, `rangeOsDentes`, `emamastigaBemAlimentosil`, `retencaoDeComida`, `mascarChiclete`, `tomarCafe`, `comerForaDeHora`, `gengivaDolorida`, `instrucaoDeHigieneBucal`, `escovarOsDentes`, `fioDental`, `vaiAoDentista`, `tratamentoOdontológico`, `created_at`, `updated_at`) VALUES
-(4, 'Juan Carlos Justiniano Coelho', '55664830204', '1997-10-20', 'masculino', 'Travessa esmeralda, 248 - Nova Esperança', 'Rio Branco', 'Acre', 'Brasil', 'Estagiárioooo', '68 9614-2774', 'juancarlos@gmail.com', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Sim', 'Sim', 'Sim', '3', '0', '1 vez por ano', '2 meses atrás', '2018-10-20 19:03:12', '2018-10-20 19:03:40'),
-(6, 'Neymar', '12345678905', '1995-11-17', 'masculino', 'Av. Brasil, Quadra 1 Casa 01A', 'Rio Branco', 'Acre', 'Brasil', 'Jogado', '68 99229-5059', 'ney@bola.com', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Sim', 'Sim', 'Sim', '3', '2', '2 vezes ao ano', '6 meses atrás', '2018-10-20 19:30:55', '2018-10-20 19:30:55'),
-(7, 'Paulo Henriqueeeee', '12345678908', '1996-11-11', 'masculino', 'Av. Brasil, Quadra 1 Casa 01A', 'Rio Branco', 'AC', 'Brasil', 'T.I', '68 99229-5059', 'j.v.silva.n@gmail.com', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Sim', 'Sim', 'Sim', '3', '2', 'uma vez ao ano', '5 meses atrás', '2018-10-20 21:25:50', '2018-10-20 21:26:06');
+(2, 'Demóstenes Nascimento', '213.123.232-13', '1960-02-12', 'masculino', 'Av. Brasil', 'Rio Branco', 'AC', 'brasileiro', 'Jogador', '(99)99999-99', 'demostevetv5@gmail.com', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', '3', '2', '2', '3', '2018-11-24 03:30:35', '2018-11-24 03:30:35'),
+(3, 'Neymar', '123.456.678-89', '1998-02-02', 'masculino', 'do ney', 'rio branco', 'acre', 'brasileiro', 'estudante', '(78)34973-4392', 'ncjkanjan@njfasnfjaj', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', '3', '2', '2', '2', '2018-11-24 20:15:54', '2018-11-24 20:15:54'),
+(4, 'leonardo', '123.456.778-88', '9920-02-09', 'masculino', 'rua alguma coisa', 'rio branco', 'acre', 'brasileiro', 'estudante', '(12)31423-4324', 'xzczczxc@gmail.com', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Sim', 'Sim', 'Não', 'Não', 'Não', '3', 'mais3', '2', '0', '2018-11-24 20:29:23', '2018-11-24 20:29:23'),
+(6, 'BOLSONAROMITO', '123.224.324-23', '1998-02-02', 'masculino', 'asasdsdasddsadsa', 'saddas', 'asdas', 'brasileiro', 'dasdas', '(32)32432-4234', 'fsdfdsfdsdfds', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', '0', '2', '3', '3', '2018-11-24 21:20:44', '2018-11-24 21:21:07'),
+(7, 'Paulo Henrique', '123.456.789-00', '1990-03-31', 'masculino', 'Av. Brasil', 'Rio Branco', 'AC', 'brasileiro', 'Estagiárioooo', '(99)99999-9999', 'ney@bola.com', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Sim', 'Sim', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', 'Não', '0', '0', '1', '1', '2018-11-27 00:49:24', '2018-11-27 00:49:24');
 
 -- --------------------------------------------------------
 
@@ -200,18 +193,17 @@ CREATE TABLE `servicos` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `ativo` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `servicos`
 --
 
-INSERT INTO `servicos` (`id`, `nome`, `created_at`, `updated_at`) VALUES
-(9, 'Restauração', '2018-10-20 18:59:13', '2018-10-20 18:59:13'),
-(10, 'Canal', '2018-10-20 18:59:41', '2018-10-20 18:59:41'),
-(13, 'Extração', '2018-10-26 03:18:17', '2018-10-26 03:18:17'),
-(14, 'Clareamento', '2018-10-27 20:15:05', '2018-10-27 20:15:05');
+INSERT INTO `servicos` (`id`, `nome`, `created_at`, `updated_at`, `ativo`) VALUES
+(1, 'Canal', NULL, NULL, 1),
+(5, 'Restauração', '2018-11-27 00:46:30', '2018-11-27 00:46:30', 1);
 
 -- --------------------------------------------------------
 
@@ -234,10 +226,12 @@ CREATE TABLE `tratamentos` (
 --
 
 INSERT INTO `tratamentos` (`id`, `servico_id`, `dente_id`, `dentista_id`, `paciente_id`, `created_at`, `updated_at`) VALUES
-(1, 10, 5, 12, 4, '2018-10-20 19:12:48', '2018-10-20 19:12:48'),
-(2, 9, 1, 12, 4, '2018-10-20 19:13:39', '2018-10-20 19:13:39'),
-(4, 13, 5, 12, 6, '2018-10-26 03:23:05', '2018-10-26 03:23:05'),
-(5, 14, 35, 12, 4, '2018-10-27 20:19:32', '2018-10-27 20:19:32');
+(1, NULL, 2, 3, NULL, '2018-11-13 01:03:27', '2018-11-13 01:03:27'),
+(2, NULL, 21, NULL, NULL, '2018-11-13 01:05:11', '2018-11-13 01:05:11'),
+(3, NULL, 2, 3, 2, '2018-11-24 20:18:06', '2018-11-24 20:18:06'),
+(4, NULL, 5, NULL, 3, '2018-11-24 20:19:19', '2018-11-24 20:19:19'),
+(5, 1, 3, NULL, 4, '2018-11-24 20:31:28', '2018-11-24 20:31:28'),
+(6, 5, 14, 3, 7, '2018-11-27 00:51:45', '2018-11-27 00:51:45');
 
 -- --------------------------------------------------------
 
@@ -254,19 +248,21 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `ativo` tinyint(4) NOT NULL,
+  `cargo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cro` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `nome`, `usuario`, `cpf`, `tipo`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'João Víctor', 'joao', '023.163.152-45', 'ADM', '$2y$10$OmVDEf8VqSF.LVBjMmfbQ.1d/unt0lPzUu9V2P6gD4QRiyh5cKcDy', '9sLx92FgxRzFSGcUztVSUq23BnuWzzfqBQj6fooTfmw08WtQylQOvZrLGiaZ', '2018-10-01 16:37:19', '2018-10-20 18:52:18'),
-(11, 'Debora', 'debora', '12345678901', 'A', '$2y$10$SWwFhhuLQ0ZdC3X5o4Fyn.WU1PxX5vdhDITMNCqspDNTc84FkBieq', 'MR7YNl0UF8Kxl8OpyMd4L0q6Ee46Hx69gbYqeCFOAav5LSINwpQFMpmRGLBU', '2018-10-20 18:54:47', '2018-10-20 18:55:36'),
-(12, 'William Maffi', 'william', '03185849213', 'D', '$2y$10$O.vgOwpUY1tQEY7gZ0dwwuBcEpAynBjI2omVtk01/IOvP1qeGvsqi', 'FQcZ9uBklb0dbsRyp73PzONrULSCW0K7i7YNA9goifu58Kl4ayRtBQEGjy8j', '2018-10-20 18:56:56', '2018-10-20 18:57:14'),
-(13, 'Tiago Nolasco', 'nolasco', '03283343241', 'D', '$2y$10$i5XXt.mi6o9MNr2T9Rhp9.Cxq7eYANMWdqFE3Z4IqosTHQ/WhwBaq', NULL, '2018-10-20 18:57:52', '2018-10-20 18:58:01'),
-(16, 'Teste', 'teste', '12345678907', 'D', '$2y$10$F1Ttf6CNkQGCXJi0Re4ZH.BjYJXVZ2YVcr421eW2Ho7RT3Jv/814K', NULL, '2018-10-20 21:23:44', '2018-10-20 21:23:44');
+INSERT INTO `users` (`id`, `nome`, `usuario`, `cpf`, `tipo`, `password`, `remember_token`, `created_at`, `updated_at`, `ativo`, `cargo`, `cro`) VALUES
+(1, 'João Víctor', 'joao', '023.164.152-45', 'ADM', '$2y$10$3mPDyrK1/8mkyakubDDGLe.lCjYs3TYO6NVSjV6.4dlOZYcL7eW8u', 'XwYvhZUaMyEdteYrv08LQBpnauIii3vBoos3mvYJd448fmQ4T3lPH23sIBrz', NULL, '2018-11-13 03:33:57', 1, NULL, NULL),
+(2, 'Debora', 'debora', '12345678900', 'A', '$2y$10$yjr29z2yaj.6DOYXLtRi..LAz1qrZsnab94cxsytRrgUuYub6b2F.', 'MMJmAtzsnKkji2NiB6HdXqZMOXjwMrhEiJKAmvgR1mWH2OfcLN0VlWaDiykm', '2018-11-10 00:51:23', '2018-11-27 00:00:17', 1, NULL, NULL),
+(3, 'William', 'william', '12345678901', 'D', '$2y$10$3BQIRliNnDRW9KJiql2PzOKwvEz6rs5Eej9TqmrKa7OGZozNh0Bsi', 'tWEc0StYmkNx74rlIzldgZhmUmzxStHwzutQKvvVBu2AHl2kzUEAGwIIdmG7', '2018-11-10 01:01:35', '2018-11-27 00:00:30', 1, 'Cirurgião', '10071'),
+(17, 'Tiago Nolasco', 'titico', '467.777.878-78', 'D', '$2y$10$aUKdlu9ysvKSebRXaO2VW.anKZllXxeayEG0wL1ZR4a9fciz0m206', NULL, '2018-11-27 00:47:41', '2018-11-27 00:47:41', 1, 'Cirurgião', '1071');
 
 --
 -- Indexes for dumped tables
@@ -278,9 +274,7 @@ INSERT INTO `users` (`id`, `nome`, `usuario`, `cpf`, `tipo`, `password`, `rememb
 ALTER TABLE `consultas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `consultas_paciente_id_foreign` (`paciente_id`),
-  ADD KEY `consultas_dentista_id_foreign` (`dentista_id`),
-  ADD KEY `consultas_dente_id_foreign` (`dente_id`),
-  ADD KEY `consultas_servico_id_foreign` (`servico_id`);
+  ADD KEY `consultas_dentista_id_foreign` (`dentista_id`);
 
 --
 -- Indexes for table `dentes`
@@ -332,19 +326,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `dentes`
 --
 ALTER TABLE `dentes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pacientes`
@@ -356,19 +350,19 @@ ALTER TABLE `pacientes`
 -- AUTO_INCREMENT for table `servicos`
 --
 ALTER TABLE `servicos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tratamentos`
 --
 ALTER TABLE `tratamentos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
@@ -378,10 +372,8 @@ ALTER TABLE `users`
 -- Limitadores para a tabela `consultas`
 --
 ALTER TABLE `consultas`
-  ADD CONSTRAINT `consultas_dente_id_foreign` FOREIGN KEY (`dente_id`) REFERENCES `dentes` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `consultas_dentista_id_foreign` FOREIGN KEY (`dentista_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `consultas_paciente_id_foreign` FOREIGN KEY (`paciente_id`) REFERENCES `pacientes` (`id`),
-  ADD CONSTRAINT `consultas_servico_id_foreign` FOREIGN KEY (`servico_id`) REFERENCES `servicos` (`id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `consultas_paciente_id_foreign` FOREIGN KEY (`paciente_id`) REFERENCES `pacientes` (`id`);
 
 --
 -- Limitadores para a tabela `tratamentos`

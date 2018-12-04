@@ -1,7 +1,9 @@
 @extends('paciente.paciente')
 @section('sub-content')
+
 <div class="container-fluid">
 	<div class="row cm-fix-height">
+        @if(count($tratamentos) > 0)
         <img src="../../img/prontuario.jpeg">
         <table class="table table-bordered table-striped">
           <thead>
@@ -28,6 +30,9 @@
             @endforeach
           </tbody>
         </table>
+        @else
+        <h2>O paciente ainda não passou por nenhum tratamento!</h2>
+        @endif
 	</div>
 </div>
 @endsection
