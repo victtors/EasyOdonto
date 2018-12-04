@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Paciente;
 use App\Tratamento;
+use App\Dente;
+use App\Servico;
+use App\User;
 use Illuminate\Http\Request;
 use View;
 use Session;
@@ -86,8 +89,18 @@ class PacienteController extends Controller
 
         $tratamentos = Tratamento::with(['servico', 'dente', 'paciente', 'dentista'])->where('paciente_id', $id)->get();
 
+        $dentes = Dente::all();
+        $servicos = Servico::all();
+        $dentistas = User::where('ativo', 1)->where('tipo', 'D')->get();
+
         return View::make('paciente.prontuario')
-            ->with('tratamentos', $tratamentos);
+            ->with('data', [
+                "tratamentos" => $tratamentos,
+                "dentes" => $dentes,
+                "servicos" => $servicos,
+                "dentistas" => $dentistas,
+                "paciente_id" => $id
+            ]);
 
     }
 

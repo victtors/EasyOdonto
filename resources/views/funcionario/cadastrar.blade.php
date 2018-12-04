@@ -3,18 +3,22 @@
 <div class="container-fluid" ng-controller="funcionarioCadastroController">
     <div class="row cm-fix-height">
         <div class="col-sm-offset-2 col-sm-8">
-            @if (Session::has('message'))
-                <div class="alert alert-danger alert-dismissible show" role="alert">
-                    {{ Session::get('message') }}
+            @if ($errors->any())
+                <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
             <div class="panel panel-default">
                 <div class="panel-heading">Cadastrar um novo funcionário</div>
                 <div class="panel-body">
-                    <form method="POST" role="form" action="{{ route('register') }}">
+                    <form method="POST" role="form" action="{{ url('users/registro') }}">
                         {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>

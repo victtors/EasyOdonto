@@ -57,14 +57,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'required' => 'O campo de :attribute é requerido!',
+            'unique' => 'Este :attribute já está cadastro em nossa base de dados!',
+            'confirmed' => 'As senhas devem ser iguais!'
+        ];
 
         $validator =  Validator::make($request->all(),[
             'password' => 'required|string|confirmed',
-        ]);
+            'usuario' => 'required|unique:users'
+        ], $messages);
         
         if($validator->fails()){
-            Session::flash('message', 'Senha e confirmação de senha não batem!');
-            return Redirect::to('funcionario/cadastrar');
+            return View::make('funcionario.cadastrar')->with('errors', $validator->errors());
         }
 
         $funcionario = User::create([
@@ -73,11 +78,13 @@ class UserController extends Controller
             'password' => Hash::make($request['password']),
             'cpf' => $request['cpf'],
             'tipo' => $request['tipo'],
-            'ativo' => '1',
+            'ativo' => 1,
             'cargo' => $request['cargo'],
             'cro' => $request['cro']
         ]);
+
         Session::flash('message', 'Funcionário criado com sucesso!');
+
         return Redirect::to('funcionario/lista');
     }
 
