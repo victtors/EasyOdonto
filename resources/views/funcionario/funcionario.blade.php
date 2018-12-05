@@ -85,3 +85,4 @@
     </div>
 @endsection
 <script type="text/javascript" src="{{url('js/jquery.min.js')}}"></script>
+/////
