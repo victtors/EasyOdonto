@@ -58,8 +58,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'required' => 'O campo de :attribute é requerido!',
-            'unique' => 'Este :attribute já está cadastro em nossa base de dados!',
+            'required' => 'O campo de :attribute/login é requerido!',
+            'unique' => 'Este :attribute/login já está cadastro em nossa base de dados!',
             'confirmed' => 'As senhas devem ser iguais!'
         ];
 
@@ -83,7 +83,7 @@ class UserController extends Controller
             'cro' => $request['cro']
         ]);
 
-        Session::flash('message', 'Funcionário criado com sucesso!');
+        Session::flash('message', 'Funcionário cadastrado com sucesso!');
 
         return Redirect::to('funcionario/lista');
     }
