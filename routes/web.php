@@ -50,6 +50,7 @@ Route::get('dente/lista', 'DenteController@index');
 
 Route::get('tratamento/lista', 'TratamentoController@index');
 Route::post('tratamentos', 'TratamentoController@store')->name('tratamentos');
+Route::post('tratamento/edit/{id}', 'TratamentoController@update');
 
 Route::get('relatorio/lista', 'RelatorioController@index');
 

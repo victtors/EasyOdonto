@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tratamento;
 use Illuminate\Http\Request;
+use Session;
 
 class TratamentoController extends Controller
 {
@@ -73,9 +74,14 @@ class TratamentoController extends Controller
      * @param  \App\Tratamento  $tratamento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tratamento $tratamento)
+    public function update(Request $request, $id)
     {
-        //
+        $tratamento = Tratamento::where('paciente_id',$id)->firstOrFail();
+
+        $tratamento->fill($request->all())->save();
+
+        Session::flash('message', 'Tratamento editado com sucesso!');
+        return ["tratamento" => $tratamento];
     }
 
     /**
