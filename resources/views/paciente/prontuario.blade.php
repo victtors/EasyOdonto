@@ -57,9 +57,11 @@
                     <td>Concluído</td>
                     <td>
                       <span>
+                        @if(Auth::user()->tipo == 'D')
                         <a href="javascript:void(0)" title="Editar linha" class="pull-right fa fa-2x fa-pencil editar-linha" id="{{$key}}">
                         </a>
                         <button id="salvar{{$key}}" type="submit" class="pull-right btn btn-primary btn-salvar" style="display: none" >Salvar</button>
+                        @endif
                       </span>
                     </td>
                   </form>

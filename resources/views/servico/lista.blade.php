@@ -17,7 +17,6 @@
                 <table class="table table-bordered table-hover">
                     <thead>
 	                    <tr>
-                            <th>#</th>
                             <th>Nome</th>
                             <th>Opções</th>
                         </tr>
@@ -25,7 +24,6 @@
                     <tbody>
                     	@foreach($servicos as $key => $value)
 	                        <tr>
-	                            <th scope="row">{{$value->id}}</th>
 	                            <td>{{$value->nome}}</td>
 	                            <td>
 	                            	<form method="POST" class="pull-right" action="./delete/{{$value->id}}">

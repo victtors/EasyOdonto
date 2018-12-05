@@ -17,7 +17,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
 	                    <tr>
-                            <th>#</th>
+                            
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Tipo</th>
@@ -28,7 +28,6 @@
                     <tbody>
                     	@foreach($funcionarios as $key => $value)
 	                        <tr>
-	                            <th scope="row">{{$value->id}}</th>
 	                            <td>{{$value->nome}}</td>
 	                            <td ng-bind-html="'{{$value->cpf}}' | cpf"></td>
 	                            @if($value->tipo == 'ADM')

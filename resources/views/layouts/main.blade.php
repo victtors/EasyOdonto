@@ -22,7 +22,7 @@
 	            <div id="cm-menu-scroller">
 	                <ul class="cm-menu-items">
 	                    <li class="@active('agenda/?.*')"><a href="{{url('agenda')}}" class="sf-book">Agenda</a></li>
-	                    @if(Auth::user()->tipo == 'ADM' or Auth::user()->tipo == 'A' or Auth::user()->tipo == 'D')
+	                    @if(Auth::user()->tipo == 'A' or Auth::user()->tipo == 'D')
 	                    	<li class="@active('paciente/?.*')"><a href="{{url('paciente/lista')}}" class="sf-profile-group">Paciente</a></li>
 	                    @endif
 	                   	@if(Auth::user()->tipo == 'ADM')

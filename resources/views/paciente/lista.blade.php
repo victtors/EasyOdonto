@@ -27,7 +27,6 @@
                 <table class="table table-bordered table-hover">
                     <thead>
 	                    <tr>
-                            <th>#</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Ações</th>
@@ -36,7 +35,6 @@
                     <tbody>
                     	@foreach($pacientes as $key => $value)
 	                        <tr>
-	                            <th scope="row">{{$value->id}}</th>
 	                            <td>{{$value->nome}}</td>
 	                            <td ng-bind-html="'{{$value->cpf}}' | cpf"></td>
 	                            <td>
