@@ -31,4 +31,8 @@ class Tratamento extends Model
         return $this->belongsTo('App\Servico');
     }
 
+    public function getUpdatedAtAttribute($value) {
+        return \Carbon\Carbon::parse($value)->format('d/m/Y');
+    }
+
 }
