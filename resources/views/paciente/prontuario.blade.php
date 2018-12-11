@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
 	<div class="row cm-fix-height">
-        @if(count($tratamentos) > 0)
+        @if(count($data['tratamentos']) > 0)
         <img src="../../img/prontuario.jpeg">
         @if (Session::has('message'))
           <div class="alert alert-success alert-dismissible show" role="alert">
