@@ -51,7 +51,7 @@
                           <td>@{{t.dentista.nome}}</td>
                           <td>@{{t.dente.nome}} - @{{t.dente.numero}}</td>
                           <td>@{{t.servico.nome}}</td>
-                          <td>@{{t.concluido}}</td>
+                          <td>@{{t.concluido ? "Sim" : "Não"}}</td>
                         </tr>
                       </tbody>
                       <tfoot>
@@ -75,7 +75,7 @@
                               </ui-select>
                             </td>
                             <td>
-                              <input type="checkbox" name="concluido">
+                              <input type="checkbox" name="concluido" ng-model="vm.concluido">
                             </td>
                             <td>
                               <button type="submit" ng-click="vm.salvarTratamento()" class="btn btn-success">Feito</button>

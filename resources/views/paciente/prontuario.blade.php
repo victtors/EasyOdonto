@@ -51,7 +51,7 @@
                     </td>
                     <td>{{$t->dentista->nome}}</td>
                     <td>{{$t->updated_at}}</td>
-                    <td>Concluído</td>
+                    <td>{{$t->concluido ? "Concluido" : "Em Andamento"}}</td>
                     <td>
                       <span>
                         @if(Auth::user()->tipo == 'D')

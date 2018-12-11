@@ -405,7 +405,8 @@
                 servico_id: vm.servico.id,
                 dente_id: vm.dente.id,
                 dentista_id: user.id,
-                paciente_id: evento.paciente_id
+                paciente_id: evento.paciente_id,
+                concluido: vm.concluido
             }
             console.log(tratamento)
             $http.post("http://localhost:8000/tratamentos", tratamento)

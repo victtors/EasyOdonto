@@ -41,6 +41,7 @@ class TratamentoController extends Controller
      */
     public function store(Request $request)
     {
+        $request['concluido'] = $request['concluido'] ? 1 : 0;
         $tratamento = Tratamento::create($request->all());
         return ["tratamento"=>$tratamento];
     }
