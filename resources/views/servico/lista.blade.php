@@ -3,7 +3,7 @@
 <div class="container-fluid">
 	<div class="row cm-fix-height">
 		@if (Session::has('message'))
-			<div class="alert alert-info alert-dismissible show" role="alert">
+			<div class="alert alert-success alert-dismissible show" role="alert">
 				{{ Session::get('message') }}
 		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    	<span aria-hidden="true">&times;</span>
@@ -17,7 +17,6 @@
                 <table class="table table-bordered table-hover">
                     <thead>
 	                    <tr>
-                            <th>#</th>
                             <th>Nome</th>
                             <th>Opções</th>
                         </tr>
@@ -25,7 +24,6 @@
                     <tbody>
                     	@foreach($servicos as $key => $value)
 	                        <tr>
-	                            <th scope="row">{{$value->id}}</th>
 	                            <td>{{$value->nome}}</td>
 	                            <td>
 	                            	<form method="POST" class="pull-right" action="./delete/{{$value->id}}">

@@ -32,6 +32,7 @@
                     <p><b>Nome do Paciente:</b> @{{vm.evento.title}}</p>
                     <p><b>CPF:</b> @{{vm.evento.paciente.cpf}}</p>
                     <p><b>Contato:</b> @{{vm.evento.paciente.contato}}</p>
+                    <p><b>E-mail:</b> @{{vm.evento.paciente.email}}</p>
                     <p><b>Dentista:</b> @{{vm.evento.dentista.nome}}</p>
                     @if(Auth::user()->tipo == 'D')
                     <hr />

@@ -13,7 +13,7 @@
 <div class="container-fluid" ng-controller="pacienteListaController">
 	<div class="row cm-fix-height">
 		@if (Session::has('message'))
-			<div class="alert alert-info alert-dismissible show" role="alert">
+			<div class="alert alert-success alert-dismissible show" role="alert">
 				{{ Session::get('message') }}
 		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    	<span aria-hidden="true">&times;</span>
@@ -27,7 +27,6 @@
                 <table class="table table-bordered table-hover">
                     <thead>
 	                    <tr>
-                            <th>#</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Ações</th>
@@ -36,14 +35,13 @@
                     <tbody>
                     	@foreach($pacientes as $key => $value)
 	                        <tr>
-	                            <th scope="row">{{$value->id}}</th>
 	                            <td>{{$value->nome}}</td>
 	                            <td ng-bind-html="'{{$value->cpf}}' | cpf"></td>
 	                            <td>
                                     @if(Auth::user()->tipo == 'ADM' or Auth::user()->tipo == 'A')
     	                            	<form method="POST" class="pull-right" action="./delete/{{$value->id}}">
     	                            		@csrf
-    	                            		<button class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o paciente {{$value->nome}}?')">Deletar</button>
+    	                            		<button class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o paciente {{$value->nome}}?')">Desativar</button>
     	                            	</form>
     	                                <!-- <a class="btn btn-small btn-success" href="{{ URL::to('paciente/' . $value->id) }}">Detalhes</a> -->
                                         <a style="float: right;margin-right: 10px" class="btn btn-small btn-info" href="{{ URL::to('paciente/edit/' . $value->id) }}">Editar</a>

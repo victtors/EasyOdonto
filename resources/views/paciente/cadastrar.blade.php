@@ -82,7 +82,7 @@
 								<div class="form-group">
 			                        <label for="contato" class="col-sm-1 control-label">Contato: </label>
 			                        <div class="col-sm-10">
-			                            <input type="text" class="form-control" mask="(99) 99999-9999" ng-model="telefone" placeholder="'Ex: 6899999-0000'" name="contato">
+			                            <input type="text" class="form-control" mask="(99) 99999-9999" ng-model="telefone" placeholder="'Ex: (68) 99999-0000'" name="contato">
 			                        </div>
 			                    </div>
 

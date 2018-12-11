@@ -35,7 +35,7 @@
                       <span class="span{{$key}}">{{$t->dente->nome}} - {{$t->dente->numero}}</span>
                       <select id="input-dente{{$key}}" class="form-control" name="dente" style="display: none">
                         @foreach($data['dentes'] as $key_dente => $d)
-                          <option value="{{$d->id}}" {{$d->id == $t->dente->id ? 'selected' : ''}}>{{$d->nome}}</option>
+                          <option value="{{$d->id}}" {{$d->id == $t->dente->id ? 'selected' : ''}}>{{$d->nome}} - {{$d->numero}}</option>
                         @endforeach
                       </select>
                     </td>
@@ -43,25 +43,22 @@
                       <span class="span{{$key}}">{{$t->servico->nome}}</span>
                       <select id="input-servico{{$key}}" class="form-control" name="servico" style="display: none">
                         @foreach($data['servicos'] as $key_servico => $s)
-                          <option value="{{$s->id}}" {{$s->id == $t->servico->id ? 'selected' : ''}}>{{$s->nome}}</option>
+                          @if($s->ativo != 0)
+                            <option value="{{$s->id}}" {{$s->id == $t->servico->id ? 'selected' : ''}}>{{$s->nome}}</option>
+                          @endif
                         @endforeach
                       </select>
                     </td>
-                    <td>
-                      <span class="span{{$key}}">{{$t->dentista->nome}}</span>
-                      <select id="input-dentista{{$key}}" class="form-control" name="dentista" style="display: none">
-                        @foreach($data['dentistas'] as $key_dentista => $den)
-                          <option value="{{$den->id}}" {{$den->id == $t->dentista->id ? 'selected' : ''}}>{{$den->nome}}</option>
-                        @endforeach
-                      </select>
-                    </td>
+                    <td>{{$t->dentista->nome}}</td>
                     <td>{{$t->updated_at}}</td>
                     <td>Concluído</td>
                     <td>
                       <span>
+                        @if(Auth::user()->tipo == 'D')
                         <a href="javascript:void(0)" title="Editar linha" class="pull-right fa fa-2x fa-pencil editar-linha" id="{{$key}}">
                         </a>
                         <button id="salvar{{$key}}" type="submit" class="pull-right btn btn-primary btn-salvar" style="display: none" >Salvar</button>
+                        @endif
                       </span>
                     </td>
                   </form>

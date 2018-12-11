@@ -68,7 +68,9 @@
         <div class="nav-tabs-container">
             <ul class="nav nav-tabs">
                 <li class="@active('paciente/lista/?.*')"><a href="{{ url('/paciente/lista') }}">Lista de Pacientes</a></li>
+                @if(Auth::user()->tipo == 'A')
                 <li class="@active('paciente/cadastrar/?.*')"><a href="{{ url('/paciente/cadastrar') }}">Cadastrar Paciente</a></li>
+                @endif
             </ul>
         </div>
     </div>
