@@ -20,7 +20,7 @@
                     		<div class="form-group">
 		                        <label for="nome" class="col-sm-1 control-label">CPF: </label>
 		                        <div class="col-sm-10">
-		                            <input type="text" class="form-control" placeholder="CPF do paciente" name="cpf" ng-value="{{$paciente->cpf}} | cpf" mask="999.999.999-99" ng-model="vm.cpf"
+		                            <input type="text" class="form-control" placeholder="CPF do paciente" name="cpf" ng-value="{{$paciente->cpf}} | cpf" mask="999.999.999-99" disabled ng-model="vm.cpf"
 		                            {{Auth::user()->tipo == 'D' ? 'disabled': ''}}
 		                            >
 		                        </div>

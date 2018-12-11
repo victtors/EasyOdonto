@@ -3,7 +3,7 @@
 <div class="container-fluid">
 	<div class="row cm-fix-height">
 		@if (Session::has('message'))
-			<div class="alert alert-info alert-dismissible show" role="alert">
+			<div class="alert alert-success alert-dismissible show" role="alert">
 				{{ Session::get('message') }}
 		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    	<span aria-hidden="true">&times;</span>
